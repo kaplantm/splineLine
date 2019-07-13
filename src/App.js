@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import {
@@ -13,6 +13,8 @@ import theme from "./theming/theme";
 
 import { css } from "@emotion/core";
 import { BeatLoader } from "react-spinners";
+import Stage1 from "./components/Stage1";
+import Stage2 from "./components/Stage2";
 
 const override = css`
   display: block;
@@ -20,12 +22,16 @@ const override = css`
 `;
 
 function App() {
-  const handleChange = input => e => {
-    // this.setState({ [input]: e.target.value });
-    console.log("yo");
+  const [stage, setStage] = useState(1);
+  const [lineCount, setLineCount] = useState(2);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const state = {
+    stage: { updater: setStage, value: stage },
+    lineCount: { updater: setLineCount, value: lineCount },
+    isLoading: { updater: setIsLoading, value: isLoading }
   };
 
-  // console.log(useTheme());
   return (
     <ThemeProvider theme={theme}>
       <React.Fragment>
@@ -34,67 +40,11 @@ function App() {
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
           </header>
-
-          {/* <TextField
-            hintText="1"
-            floatingLabelText="How many lines?"
-            onChange={handleChange("lines")}
-          /> */}
-          <Typography id="how-many-lines" gutterBottom>
-            How many lines?
-          </Typography>
-          <div
-            style={{
-              width: "60%",
-              maxWidth: 500,
-              marginTop: "2em",
-              marginBottom: "2em"
-            }}
-          >
-            <Slider
-              valueLabelDisplay="on"
-              defaultValue={2}
-              aria-labelledby="how-many-lines"
-              step={1}
-              marks
-              min={1}
-              max={5}
-            />
-          </div>
-          <Button variant="contained" color="primary">
-            Create Timeline
-          </Button>
-          <div className="loader">
-            <Typography id="how-many-lines" gutterBottom>
-              Generating splines...
-            </Typography>
-            <BeatLoader
-              css={override}
-              sizeUnit={"px"}
-              size={15}
-              color={theme.palette.secondary.light}
-              // loading={this.state.loading}
-            />
+          <div className="AppContent">
+            {stage === 1 && <Stage1 {...state} />}
+            {stage === 2 && <Stage2 {...state} />}
           </div>
         </div>
-        {/* {console.log(useTheme())} */}
-        {/* <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>How many lines?</p>
-            <Button variant="contained" color="primary">
-              Hello World
-            </Button>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-        </div> */}
       </React.Fragment>
     </ThemeProvider>
   );

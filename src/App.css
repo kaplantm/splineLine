@@ -23,6 +23,7 @@
   font-size: calc(10px + 2vmin);
   justify-content: center;
   color: white;
+  margin: 2em auto;
 }
 
 .App-logo {

@@ -20,26 +20,30 @@ fade {
   -ms-transition: opacity 2s ease-in;
   transition: opacity 2s ease-in;
 }
-​ .cyan {
+
+.timeLineCenter {
+  /* background-color: pink; */
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.timeLineRight {
+  background-color: greenyellow;
+  width: 150px;
+}
+
+.timeLineLeft {
+  background-color: violet;
+  width: 150px;
+}
+
+​ .timeLineLefte {
   display: flex;
   flex-wrap: nowrap;
   background-color: cyan;
-  width: 150px;
   flex-direction: column;
   justify-content: flex-start;
-}
-
-.pink {
-  background-color: pink;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.olive {
-  background-color: olive;
   width: 150px;
 }
-
 .flex-container {
   justify-content: center;
   display: flex;

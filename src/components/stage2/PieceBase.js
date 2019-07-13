@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import logo from "../logo.svg";
-import "./TimeLinePiece.css";
+import "./PieceBase.css";
 import {
   Slider,
   Typography,
@@ -8,9 +7,9 @@ import {
   Button,
   CssBaseline
 } from "@material-ui/core";
-import shapeConstants from "../utils/shapeConstants";
+import shapeConstants from "../../utils/shapeConstants";
 
-function TimeLinePiece(props) {
+function PieceBase(props) {
   const { shape, style, color, onmouseover, id } = props;
 
   let element, combinedStyle;
@@ -76,4 +75,4 @@ function TimeLinePiece(props) {
   return element;
 }
 
-export default TimeLinePiece;
+export default PieceBase;

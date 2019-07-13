@@ -1,0 +1,54 @@
+/* div:hover {
+  background: grey;
+} */
+
+.square {
+  border: 0;
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  margin: 0;
+}
+
+.quarter-circle-top-left {
+  width: 150px;
+  height: 150px;
+  border-bottom: 100px solid tomato;
+  border-right: 100px solid tomato;
+  border-radius: 0 0 150px 0;
+  -moz-border-radius: 0 0 150px 0;
+  -webkit-border-radius: 0 0 150px 0;
+}
+.quarter-circle-top-right {
+  width: 150px;
+  height: 150px;
+  border-bottom: 100px solid tomato;
+  border-left: 100px solid tomato;
+  border-radius: 0 150px 0 0;
+  border-radius: 0 0 0 105px;
+  -moz-border-radius: 0 0 0 150px;
+  -webkit-border-radius: 0 0 0 150px;
+}
+.quarter-circle-bottom-left {
+  width: 150px;
+  height: 150px;
+  border-top: 100px solid tomato;
+  border-right: 100px solid tomato;
+  border-radius: 0px 0px 150px 1px;
+  -moz-border-radius: 0 150px 0 0;
+  -webkit-border-radius: 0 150px 0 0;
+}
+.quarter-circle-bottom-right {
+  width: 150px;
+  height: 150px;
+  border-top: 100px solid tomato;
+  border-left: 100px solid tomato;
+  border-radius: 0 150px 0 0;
+  -moz-border-radius: 150px 0 0 0;
+  -webkit-border-radius: 150px 0 0 0;
+}
+
+.spacer {
+  width: 100px;
+  height: 100px;
+}

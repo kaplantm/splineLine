@@ -22,7 +22,7 @@ const override = css`
 `;
 
 function App() {
-  const [stage, setStage] = useState(1);
+  const [stage, setStage] = useState(2);
   const [lineCount, setLineCount] = useState(2);
   const [isLoading, setIsLoading] = useState(false);
 

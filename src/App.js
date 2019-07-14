@@ -22,8 +22,8 @@ const override = css`
 `;
 
 function App() {
-  const [stage, setStage] = useState(2);
-  const [lineCount, setLineCount] = useState(2);
+  const [stage, setStage] = useState(1);
+  const [lineCount, setLineCount] = useState(5);
   const [isLoading, setIsLoading] = useState(false);
 
   const state = {
@@ -32,13 +32,17 @@ function App() {
     isLoading: { updater: setIsLoading, value: isLoading }
   };
 
+  const headerLogoClass = `App-logo ${
+    state.stage.value !== 1 ? "pointer" : ""
+  }`;
+
   return (
     <ThemeProvider theme={theme}>
       <React.Fragment>
         <CssBaseline />
         <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
+          <header className="App-header" onMouseUp={() => setStage(1)}>
+            <img src={logo} className={headerLogoClass} alt="logo" />
           </header>
           <div className="AppContent">
             {stage === 1 && <Stage1 {...state} />}

@@ -43,7 +43,11 @@ function PieceBase(props) {
     id,
     children,
     textClassModifier = "",
-    innerTextContent
+    innerTextContent,
+    onMouseUpInner,
+    onMouseOut,
+    onMouseEnter,
+    displayTextContent
   } = props;
 
   let element, combinedStyle;
@@ -52,22 +56,31 @@ function PieceBase(props) {
     ? `${shapeClasses[shape]}-static`
     : shapeClasses[shape];
   const textLocationClass = `${shapeClassName}-text${textClassModifier}`;
+  const textBorderClass = displayTextContent
+    ? `${shapeClassName}-text-border`
+    : "";
   const innerTextLocationClass = `${shapeClassName}-inner-text${textClassModifier}`;
 
   return (
     <div
       className={`${shapeClassName} animateColorChange"`}
       style={combinedStyle}
-      onMouseOver={onMouseOver}
-      onMouseUp={onMouseUp}
+      // onMouseOver={onMouseOver}
       id={id}
     >
       {!isStaticPiece && (
         <React.Fragment>
-          <div className={`absolute-full ${innerTextLocationClass}`}>
+          <div
+            className={`absolute-full ${innerTextLocationClass}`}
+            onMouseUp={onMouseUp}
+            onMouseOut={onMouseOut}
+            onMouseEnter={onMouseEnter}
+          >
             {innerTextContent}
           </div>
-          <div className={`timeLineBlockText ${textLocationClass}`}>
+          <div
+            className={`timeLineBlockText ${textLocationClass} ${textBorderClass}`}
+          >
             {children}
           </div>
         </React.Fragment>

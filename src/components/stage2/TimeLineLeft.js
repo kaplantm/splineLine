@@ -36,7 +36,6 @@ function TimeLineLeft(props) {
   if (isEvenLineCount) {
     const plainLine = (
       <React.Fragment key={`TIMELINE_LEFT_${numCurves}`}>
-        >
         <TimelinePiece style={style} />
         <DataPiece style={style} />
       </React.Fragment>

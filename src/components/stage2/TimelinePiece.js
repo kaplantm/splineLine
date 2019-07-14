@@ -15,98 +15,107 @@ const VIEW_MODE = "VIEW_MODE";
 function TimeLinePiece(props) {
   const { style = {}, shape = shapeNames.SQUARE, textClassModifier } = props;
 
-  const [contentValue, setContent] = useState(
-    "Started at UMaine Studying New Media and Computer Science"
-  );
+  const [contentValue, setContent] = useState();
   const [modeValue, setMode] = useState(VIEW_MODE);
+  const [labelValue, setLabel] = useState();
+  // const [contentValue, setContent] = useState(
+  //   "visited washington dc with hanna karas"
+  // );
+  // const [modeValue, setMode] = useState(VIEW_MODE);
+  // const [labelValue, setLabel] = useState("Summery 2015");
+  const [hoverText, setHoverText] = useState("");
 
   const state = {
     content: { updater: setContent, value: contentValue },
-    mode: { updater: setMode, value: modeValue }
+    label: { updater: setLabel, value: labelValue },
+    mode: { updater: setMode, value: modeValue },
+    hoverText: { updater: setHoverText, value: hoverText }
   };
 
   const onMouseUp = e => {
     // console.log("onMouseUp", e.target);
     // state.content.updater("cool new stuff");
-    state.mode.updater(EDIT_MODE);
+    if (state.mode.value === EDIT_MODE) {
+      console.log("onMouseUp", "set view");
+      state.mode.updater(VIEW_MODE);
+    } else {
+      state.mode.updater(EDIT_MODE);
+      console.log("onMouseUp", "set edit");
+    }
   };
-  const onMouseOver = e => {
-    // console.log("onMouseOver", e.target);
+  const onMouseEnter = e => {
+    // console.log("onMouseEnter", e.target);
+    setHoverText("Edit");
   };
 
+  const onMouseOut = e => {
+    setHoverText("");
+    // console.log("onMouseOut", e.target);
+  };
+
+  const handleChangeEvent = updater => e => {
+    // this.setState({ [input]: e.target.value });
+    // console.log("yo");
+    updater(e.target.value);
+  };
+
+  const shouldDisplayTextContent =
+    state.content.value || state.label.value || state.mode.value === EDIT_MODE;
+  // const textClasses = ` ${textClassModifier} ${
+  //   shouldDisplayTextContent ? "" : "hidden"
+  // }`;
+
+  console.log(shouldDisplayTextContent);
   return (
     <div style={{ position: "relative" }}>
       <PieceBase
         shape={shape}
         style={style}
         onMouseUp={onMouseUp}
-        onMouseOver={onMouseOver}
+        // onMouseOver={onMouseOver}
+        onMouseEnter={onMouseEnter}
+        onMouseOut={onMouseOut}
         textClassModifier={textClassModifier}
-        innerTextContent={"Done"}
+        displayTextContent={shouldDisplayTextContent}
+        innerTextContent={
+          state.mode.value === EDIT_MODE ? "Done" : state.hoverText.value
+        }
       >
-        {state.mode.value !== EDIT_MODE && state.content.value}
+        {state.mode.value !== EDIT_MODE && (
+          <React.Fragment>
+            <h3>{state.label.value}</h3>
+            {state.content.value}
+          </React.Fragment>
+        )}
         {state.mode.value === EDIT_MODE && (
-          <div>
-            {/* <Button
-              variant="contained"
-              color="primary"
-              // onClick={handleCreateTimelineButtonClick}
-            >
-              Update
-            </Button> */}
-            {/* <div
-              style={{
-                position: "absolute",
-                top: -20,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center"
-              }}
-            > */}
+          <React.Fragment>
             <TextField
-              // style={{ width: "100%", marginTop: "-2em" }}
+              defaultValue={state.label.value}
+              style={{ marginTop: "-.5em" }}
+              placeholder="Enter Year or Label"
+              id="outlined-multiline-static"
+              inputProps={{
+                maxLength: 20
+              }}
+              variant="outlined"
+              onChange={handleChangeEvent(state.label.updater)}
+            />
+            <TextField
+              defaultValue={state.content.value}
+              style={{ marginTop: ".5em", marginBottom: "-.5em" }}
+              placeholder="Enter Text"
               id="outlined-multiline-static"
               multiline
               rows="4"
               inputProps={{
                 maxLength: 70
               }}
-              defaultValue="Default Value"
               variant="outlined"
+              onChange={handleChangeEvent(state.content.updater)}
             />
-            {/* </div> */}
-          </div>
+          </React.Fragment>
         )}
       </PieceBase>
-      {/* {state.mode.value === EDIT_MODE && (
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center"
-          }}
-        >
-          <TextField
-            style={{ width: "80%", height: 80 }}
-            id="outlined-multiline-static"
-            multiline
-            // rows="4"
-            defaultValue="Default Value"
-            // className={classes.textField}
-            // margin="normal"
-            variant="outlined"
-          />
-        </div>
-      )} */}
     </div>
   );
 }

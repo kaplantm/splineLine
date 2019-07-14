@@ -1,5 +1,6 @@
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 import { blue, green } from "@material-ui/core/colors";
+import { whileStatement } from "@babel/types";
 
 const palette = {
   primary: blue,
@@ -10,20 +11,19 @@ const palette = {
 let theme = {
   palette,
   overrides: {
-    // MuiOutlinedInput: {
-    //   notchedOutline: {
-    //     borderColor: "#e0e0e0",
-    //     "&$focused": {
-    //       borderColor: "#607d8b"
-    //     }
-    //   }
-    // focused: {
-    //   borderColor: "#607d8b"
-    // }
-    // "&$focused": { borderColor: "#607d8b" }
-    // },
+    MuiOutlinedInput: {
+      root: {
+        color: "white"
+      }
+    },
+    MuiInput: {
+      root: {
+        color: "white"
+      }
+    },
     MuiTextField: {
       root: {
+        color: "white",
         "& label.Mui-focused": {
           color: "green"
         },

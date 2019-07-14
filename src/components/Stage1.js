@@ -48,7 +48,7 @@ function Stage1(props) {
       >
         <Slider
           valueLabelDisplay="on"
-          defaultValue={stage.value}
+          defaultValue={lineCount.value}
           aria-labelledby="how-many-lines"
           step={1}
           marks

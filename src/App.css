@@ -27,7 +27,6 @@
 .App-logo {
   width: 80%;
   max-height: 10vh;
-  pointer-events: none;
 }
 
 .App-header {

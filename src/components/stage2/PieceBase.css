@@ -184,7 +184,28 @@
   right: 150px;
 }
 
+.quarter-circle-lower-right-inner-text {
+  /* background-color: green; */
+  right: -100%;
+  bottom: -100%;
+}
+.quarter-circle-lower-left-inner-text {
+  /* background-color: yellow; */
+  left: -100%;
+  bottom: -100%;
+}
+.quarter-circle-upper-right-inner-text {
+  /* background-color: blue; */
+  right: -100%;
+  top: -100%;
+}
+.quarter-circle-upper-left-inner-text {
+  /* background-color: red; */
+  left: -100%;
+  top: -100%;
+}
+
 .spacer {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
 }

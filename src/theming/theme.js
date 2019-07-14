@@ -10,6 +10,40 @@ const palette = {
 let theme = {
   palette,
   overrides: {
+    // MuiOutlinedInput: {
+    //   notchedOutline: {
+    //     borderColor: "#e0e0e0",
+    //     "&$focused": {
+    //       borderColor: "#607d8b"
+    //     }
+    //   }
+    // focused: {
+    //   borderColor: "#607d8b"
+    // }
+    // "&$focused": { borderColor: "#607d8b" }
+    // },
+    MuiTextField: {
+      root: {
+        "& label.Mui-focused": {
+          color: "green"
+        },
+        "& .MuiInput-underline:after": {
+          borderBottomColor: "green"
+        },
+        "& .MuiOutlinedInput-root": {
+          "& fieldset": {
+            borderColor: palette.primary.A200
+          },
+          "&:hover fieldset": {
+            borderColor: palette.primary.A200,
+            borderWidth: 2
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: palette.primary[300]
+          }
+        }
+      }
+    },
     MuiSlider: {
       root: {
         color: palette.secondary.main,

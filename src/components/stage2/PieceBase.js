@@ -8,6 +8,7 @@ import {
   CssBaseline
 } from "@material-ui/core";
 import shapeNames, { shapeClasses } from "../../utils/shapeConstants";
+import { flexbox } from "@material-ui/system";
 
 function getCurvedPiece({
   shapeClassName,
@@ -41,7 +42,8 @@ function PieceBase(props) {
     onMouseUp,
     id,
     children,
-    textClassModifier = ""
+    textClassModifier = "",
+    innerTextContent
   } = props;
 
   let element, combinedStyle;
@@ -50,6 +52,7 @@ function PieceBase(props) {
     ? `${shapeClasses[shape]}-static`
     : shapeClasses[shape];
   const textLocationClass = `${shapeClassName}-text${textClassModifier}`;
+  const innerTextLocationClass = `${shapeClassName}-inner-text${textClassModifier}`;
 
   return (
     <div
@@ -59,7 +62,16 @@ function PieceBase(props) {
       onMouseUp={onMouseUp}
       id={id}
     >
-      <div className={`timeLineBlockText ${textLocationClass}`}>{children}</div>
+      {!isStaticPiece && (
+        <React.Fragment>
+          <div className={`absolute-full ${innerTextLocationClass}`}>
+            {innerTextContent}
+          </div>
+          <div className={`timeLineBlockText ${textLocationClass}`}>
+            {children}
+          </div>
+        </React.Fragment>
+      )}
     </div>
   );
 

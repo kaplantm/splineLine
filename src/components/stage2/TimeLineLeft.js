@@ -1,23 +1,14 @@
-import React, { useState } from "react";
-import {
-  Slider,
-  Typography,
-  TextField,
-  Button,
-  CssBaseline
-} from "@material-ui/core";
-import { ThemeProvider, useTheme } from "@material-ui/styles";
+import React from "react";
 import TimelinePiece from "./TimelinePiece";
-import shapeConstants from "../../utils/shapeConstants";
+import shapeNames from "../../utils/shapeConstants";
 import DataPiece from "./DataPiece";
 
-//TODO break out into components & add key prop
 function TimeLineLeft(props) {
   const { lineCount } = props;
   const style = { width: "100%" };
 
   const firstLine = (
-    <React.Fragment>
+    <React.Fragment key={`TIMELINE_LEFT_${0}`}>
       <DataPiece style={style} />
       <TimelinePiece style={style} />
       <DataPiece style={style} />
@@ -32,9 +23,9 @@ function TimeLineLeft(props) {
 
   for (let i = 0; i < numCurves; i++) {
     const curvedLine = (
-      <React.Fragment>
-        <TimelinePiece shape={shapeConstants.CORNER_UPPER_LEFT} style={style} />
-        <TimelinePiece shape={shapeConstants.CORNER_LOWER_LEFT} style={style} />
+      <React.Fragment key={`TIMELINE_LEFT_${i + 1}`}>
+        <TimelinePiece shape={shapeNames.CORNER_UPPER_LEFT} style={style} />
+        <TimelinePiece shape={shapeNames.CORNER_LOWER_LEFT} style={style} />
         <DataPiece style={style} />
       </React.Fragment>
     );
@@ -44,7 +35,8 @@ function TimeLineLeft(props) {
 
   if (isEvenLineCount) {
     const plainLine = (
-      <React.Fragment>
+      <React.Fragment key={`TIMELINE_LEFT_${numCurves}`}>
+        >
         <TimelinePiece style={style} />
         <DataPiece style={style} />
       </React.Fragment>

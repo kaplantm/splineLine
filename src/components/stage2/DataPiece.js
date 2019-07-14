@@ -6,12 +6,19 @@ import {
   Button,
   CssBaseline
 } from "@material-ui/core";
-import shapeConstants from "../../utils/shapeConstants";
+import shapeNames from "../../utils/shapeConstants";
 import PieceBase from "./PieceBase";
 
 function DataPiece(props) {
-  const { style = {}, shape = shapeConstants.SQUARE } = props;
-  return <PieceBase shape={shape} color={"grey"} style={style} />;
+  const { style = {}, shape = shapeNames.SQUARE, textClassModifier } = props;
+  return (
+    <PieceBase
+      shape={shape}
+      isStaticPiece={true}
+      style={style}
+      textClassModifier={textClassModifier}
+    />
+  );
 }
 
 export default DataPiece;

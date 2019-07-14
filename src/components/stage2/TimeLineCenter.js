@@ -1,23 +1,13 @@
-import React, { useState } from "react";
-import {
-  Slider,
-  Typography,
-  TextField,
-  Button,
-  CssBaseline
-} from "@material-ui/core";
-import { ThemeProvider, useTheme } from "@material-ui/styles";
+import React from "react";
 import TimelinePiece from "./TimelinePiece";
-import shapeConstants from "../../utils/shapeConstants";
 import DataPiece from "./DataPiece";
 
-//TODO break out into components & add key prop
 function TimeLineCenter(props) {
   const { lineCount } = props;
   let lines = [];
   for (let i = 0; i < lineCount; i++) {
     lines.push(
-      <React.Fragment>
+      <React.Fragment key={`TIMELINE_CENTER_${i}`}>
         {/* DATA DIV  */}
         <div className="flex-container flex-end">
           <DataPiece />
@@ -33,7 +23,7 @@ function TimeLineCenter(props) {
     );
   }
   lines.push(
-    <React.Fragment>
+    <React.Fragment key={`TIMELINE_CENTER_${lineCount}`}>
       {/* DATA DIV  */}
       <div className="flex-container flex-end">
         <DataPiece />

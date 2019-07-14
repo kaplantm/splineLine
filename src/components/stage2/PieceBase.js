@@ -7,72 +7,123 @@ import {
   Button,
   CssBaseline
 } from "@material-ui/core";
-import shapeConstants from "../../utils/shapeConstants";
+import shapeNames, { shapeClasses } from "../../utils/shapeConstants";
+
+function getCurvedPiece({
+  shapeClassName,
+  combinedStyle,
+  onMouseOver,
+  onMouseUp,
+  id,
+  children
+}) {
+  return (
+    <div
+      className={`${shapeClassName} animateColorChange"`}
+      style={combinedStyle}
+      onMouseOver={onMouseOver}
+      onMouseUp={onMouseUp}
+      id={id}
+    >
+      <div className={`timeLineBlockText ${shapeClassName}-text`}>
+        {children}
+      </div>
+    </div>
+  );
+}
 
 function PieceBase(props) {
-  const { shape, style, color, onmouseover, id } = props;
+  const {
+    shape,
+    style,
+    onMouseOver,
+    isStaticPiece,
+    onMouseUp,
+    id,
+    children,
+    textClassModifier = ""
+  } = props;
 
   let element, combinedStyle;
 
-  const backgroundColorObj = color ? { backgroundColor: color } : {};
-  const borderColorObj = color ? { borderColor: color } : {};
-  switch (shape) {
-    case shapeConstants.CORNER_UPPER_RIGHT:
-      combinedStyle = { ...style, ...borderColorObj };
-      element = (
-        <div
-          className="quarter-circle-bottom-left"
-          style={combinedStyle}
-          onMouseOver={onmouseover}
-          id={id}
-        />
-      );
-      break;
-    case shapeConstants.CORNER_LOWER_RIGHT:
-      combinedStyle = { ...style, ...borderColorObj };
-      element = (
-        <div
-          className="quarter-circle-top-left"
-          style={combinedStyle}
-          onMouseOver={onmouseover}
-          id={id}
-        />
-      );
-      break;
-    case shapeConstants.CORNER_UPPER_LEFT:
-      combinedStyle = { ...style, ...borderColorObj };
-      element = (
-        <div
-          className="quarter-circle-bottom-right"
-          style={combinedStyle}
-          onMouseOver={onmouseover}
-          id={id}
-        />
-      );
-      break;
-    case shapeConstants.CORNER_LOWER_LEFT:
-      combinedStyle = { ...style, ...borderColorObj };
-      element = (
-        <div
-          className="quarter-circle-top-right"
-          style={combinedStyle}
-          onMouseOver={onmouseover}
-          id={id}
-        />
-      );
-      break;
-    default:
-      combinedStyle = { ...style, ...backgroundColorObj };
-      element = (
-        <div
-          className="square"
-          style={combinedStyle}
-          onMouseOver={onmouseover}
-          id={id}
-        />
-      );
-  }
-  return element;
+  const shapeClassName = isStaticPiece
+    ? `${shapeClasses[shape]}-static`
+    : shapeClasses[shape];
+  const textLocationClass = `${shapeClassName}-text${textClassModifier}`;
+
+  return (
+    <div
+      className={`${shapeClassName} animateColorChange"`}
+      style={combinedStyle}
+      onMouseOver={onMouseOver}
+      onMouseUp={onMouseUp}
+      id={id}
+    >
+      <div className={`timeLineBlockText ${textLocationClass}`}>{children}</div>
+    </div>
+  );
+
+  // if(shape === shapeNames.SQUARE){
+
+  // }
+  // else{
+
+  // }
+  // element = getCurvedPiece({
+  //   shapeClassName,
+  //   combinedStyle,
+  //   onMouseOver,
+  //   onMouseUp,
+  //   id,
+  //   children
+  // });
+
+  // switch (shape) {
+  //   case shapeNames.CORNER_UPPER_RIGHT:
+  //     combinedStyle = { ...style };
+  //     shapeClassName = "quarter-circle-upper-right";
+  //     break;
+  //   case shapeNames.CORNER_LOWER_RIGHT:
+  //     combinedStyle = { ...style };
+  //     shapeClassName = "quarter-circle-upper-right";
+  //     break;
+  //   case shapeNames.CORNER_UPPER_LEFT:
+  //     combinedStyle = { ...style };
+  //     shapeClassName = "quarter-circle-upper-left";
+  //     break;
+  //   case shapeNames.CORNER_LOWER_LEFT:
+  //     combinedStyle = { ...style };
+
+  //     element = getCurvedPiece({
+  //       shapeClassName: "quarter-circle-lower-left",
+  //       combinedStyle,
+  //       onMouseOver,
+  //       onMouseUp,
+  //       id,
+  //       children
+  //     });
+  //     break;
+  //   default:
+  //     combinedStyle = { ...style };
+  //     const squareClass = isStaticPiece ? "square-static" : "square";
+  //     const textLocationClass = textBelow
+  //       ? "square-text-below"
+  //       : "square-text-above";
+  //     element = (
+  //       <div
+  //         className={squareClass + " animateColorChange"}
+  //         style={combinedStyle}
+  //         onMouseOver={onMouseOver}
+  //         onMouseUp={onMouseUp}
+  //         id={id}
+  //       >
+  //         <div className={"timeLineBlockText " + textLocationClass}>
+  //           <div>{children}</div>
+  //         </div>
+  //       </div>
+  //     );
+  // }
+  // return element;
 }
 
 export default PieceBase;

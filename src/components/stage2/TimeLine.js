@@ -2,15 +2,24 @@ import React from "react";
 import TimelinePiece from "./TimelinePiece";
 import DataPiece from "./DataPiece";
 import shapeNames from "../../utils/shapeConstants";
+import { mapNumericValueToRange } from "../../utils/generalUtils";
 
-function getLeftPiece(index, lineCount) {
-  const uncurved = <TimelinePiece baseHoverText={"1"} />;
+function getLeftPiece({ index, lineCount, opacity, cellNum }) {
+  const uncurved = <TimelinePiece opacity={opacity} baseHoverText={cellNum} />;
 
   const upperCurve = (
-    <TimelinePiece baseHoverText={"1"} shape={shapeNames.CORNER_UPPER_LEFT} />
+    <TimelinePiece
+      shape={shapeNames.CORNER_UPPER_LEFT}
+      opacity={opacity}
+      baseHoverText={cellNum}
+    />
   );
   const lowerCurve = (
-    <TimelinePiece baseHoverText={"1"} shape={shapeNames.CORNER_LOWER_LEFT} />
+    <TimelinePiece
+      shape={shapeNames.CORNER_LOWER_LEFT}
+      opacity={opacity}
+      baseHoverText={cellNum}
+    />
   );
   if (index === 0) {
     return uncurved;
@@ -23,15 +32,27 @@ function getLeftPiece(index, lineCount) {
   }
 }
 
-function getRightPiece(index, lineCount) {
+function getRightPiece({ index, lineCount, opacity, cellNum }) {
   const uncurvedTextBelow = (
-    <TimelinePiece baseHoverText={"1"} textClassModifier="-below" />
+    <TimelinePiece
+      textClassModifier="-below"
+      opacity={opacity}
+      baseHoverText={cellNum}
+    />
   );
   const upperCurve = (
-    <TimelinePiece baseHoverText={"1"} shape={shapeNames.CORNER_UPPER_RIGHT} />
+    <TimelinePiece
+      shape={shapeNames.CORNER_UPPER_RIGHT}
+      opacity={opacity}
+      baseHoverText={cellNum}
+    />
   );
   const lowerCurve = (
-    <TimelinePiece baseHoverText={"1"} shape={shapeNames.CORNER_LOWER_RIGHT} />
+    <TimelinePiece
+      shape={shapeNames.CORNER_LOWER_RIGHT}
+      opacity={opacity}
+      baseHoverText={cellNum}
+    />
   );
 
   if (index === lineCount - 1) {
@@ -46,16 +67,37 @@ function getRightPiece(index, lineCount) {
 function TimeLine(props) {
   const { lineCount } = props;
   let lines = [];
+
+  const cellsPerLine = 5;
+  const totalCells = lineCount * cellsPerLine;
+
   for (let i = 0; i < lineCount; i++) {
+    const cells = [];
+    for (let j = 0; j < cellsPerLine; j++) {
+      const cellNum =
+        i % 2
+          ? i * cellsPerLine + (cellsPerLine - j)
+          : i * cellsPerLine + j + 1;
+
+      let opacity = cellNum / totalCells;
+      opacity = mapNumericValueToRange(opacity, 0, 1, 0.3, 1);
+      console.log(cellNum, totalCells, opacity);
+      let element = <TimelinePiece opacity={opacity} baseHoverText={cellNum} />;
+
+      if (j === 0) {
+        element = getLeftPiece({ index: i, lineCount, cellNum, opacity });
+      } else if (j === 4) {
+        element = getRightPiece({ index: i, lineCount, cellNum, opacity });
+      }
+      cells.push(
+        <React.Fragment key={`TIMELINE_CELL_${i + j}`}>
+          {element}
+        </React.Fragment>
+      );
+    }
     lines.push(
       <React.Fragment key={`TIMELINE_CENTER_${i}`}>
-        <div className="flex-container">
-          {getLeftPiece(i, lineCount)}
-          <TimelinePiece baseHoverText={i * 3 + 2} />
-          <TimelinePiece baseHoverText={i * 3 + 3} />
-          <TimelinePiece baseHoverText={i * 3 + 4} />
-          {getRightPiece(i, lineCount)}
-        </div>
+        <div className="flex-container">{cells}</div>
       </React.Fragment>
     );
   }

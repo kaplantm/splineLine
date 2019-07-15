@@ -9,6 +9,7 @@ import {
 } from "@material-ui/core";
 import shapeNames, { shapeClasses } from "../../utils/shapeConstants";
 import { flexbox } from "@material-ui/system";
+import ClickOutHandler from "react-onclickout";
 
 function getCurvedPiece({
   shapeClassName,
@@ -33,10 +34,17 @@ function getCurvedPiece({
   );
 }
 
+function getColorStyle(color, shape) {
+  return shape === shapeNames.SQUARE
+    ? { backgroundColor: color }
+    : { borderColor: color };
+}
+
 function PieceBase(props) {
   const {
     shape,
     style,
+    color,
     onMouseOver,
     isStaticPiece,
     onMouseUp,
@@ -47,7 +55,8 @@ function PieceBase(props) {
     onMouseUpInner,
     onMouseOut,
     onMouseEnter,
-    displayTextContent
+    displayTextContent,
+    onClickOut
   } = props;
 
   let element, combinedStyle;
@@ -61,95 +70,38 @@ function PieceBase(props) {
     : "";
   const innerTextLocationClass = `${shapeClassName}-inner-text${textClassModifier}`;
 
+  const colorStyle = color ? getColorStyle(color, shape) : {};
   return (
-    <div className="pieceContainer" style={style}>
-      <div
-        className={`${shapeClassName} animateColorChange"`}
-        // onMouseOver={onMouseOver}
-        id={id}
-      >
-        {!isStaticPiece && (
-          <React.Fragment>
-            <div
-              className={`absolute-full ${innerTextLocationClass}`}
-              onMouseUp={onMouseUp}
-              onMouseOut={onMouseOut}
-              onMouseEnter={onMouseEnter}
-            >
-              {innerTextContent}
-            </div>
-            <div
-              className={`timeLineBlockText ${textLocationClass} ${textBorderClass}`}
-            >
-              {children}
-            </div>
-          </React.Fragment>
-        )}
+    <ClickOutHandler onClickOut={onClickOut}>
+      <div className="pieceContainer">
+        <div
+          style={{ ...style, ...colorStyle }}
+          className={`${shapeClassName} animateColorChange"`}
+          // onMouseOver={onMouseOver}
+          id={id}
+        >
+          {!isStaticPiece && (
+            <React.Fragment>
+              <div
+                className={`absolute-full ${innerTextLocationClass}`}
+                onMouseUp={onMouseUp}
+                onMouseOut={onMouseOut}
+                onMouseEnter={onMouseEnter}
+                onMouseOver={onMouseOver}
+              >
+                {innerTextContent}
+              </div>
+              <div
+                className={`timeLineBlockText ${textLocationClass} ${textBorderClass}`}
+              >
+                {children}
+              </div>
+            </React.Fragment>
+          )}
+        </div>
       </div>
-    </div>
+    </ClickOutHandler>
   );
-
-  // if(shape === shapeNames.SQUARE){
-
-  // }
-  // else{
-
-  // }
-  // element = getCurvedPiece({
-  //   shapeClassName,
-  //   combinedStyle,
-  //   onMouseOver,
-  //   onMouseUp,
-  //   id,
-  //   children
-  // });
-
-  // switch (shape) {
-  //   case shapeNames.CORNER_UPPER_RIGHT:
-  //     combinedStyle = { ...style };
-  //     shapeClassName = "quarter-circle-upper-right";
-  //     break;
-  //   case shapeNames.CORNER_LOWER_RIGHT:
-  //     combinedStyle = { ...style };
-  //     shapeClassName = "quarter-circle-upper-right";
-  //     break;
-  //   case shapeNames.CORNER_UPPER_LEFT:
-  //     combinedStyle = { ...style };
-  //     shapeClassName = "quarter-circle-upper-left";
-  //     break;
-  //   case shapeNames.CORNER_LOWER_LEFT:
-  //     combinedStyle = { ...style };
-
-  //     element = getCurvedPiece({
-  //       shapeClassName: "quarter-circle-lower-left",
-  //       combinedStyle,
-  //       onMouseOver,
-  //       onMouseUp,
-  //       id,
-  //       children
-  //     });
-  //     break;
-  //   default:
-  //     combinedStyle = { ...style };
-  //     const squareClass = isStaticPiece ? "square-static" : "square";
-  //     const textLocationClass = textBelow
-  //       ? "square-text-below"
-  //       : "square-text-above";
-  //     element = (
-  //       <div
-  //         className={squareClass + " animateColorChange"}
-  //         style={combinedStyle}
-  //         onMouseOver={onMouseOver}
-  //         onMouseUp={onMouseUp}
-  //         id={id}
-  //       >
-  //         <div className={"timeLineBlockText " + textLocationClass}>
-  //           <div>{children}</div>
-  //         </div>
-  //       </div>
-  //     );
-  // }
-  // return element;
 }
 
 export default PieceBase;

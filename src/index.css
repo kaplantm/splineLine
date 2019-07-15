@@ -29,3 +29,29 @@ code {
 .pointer {
   cursor: pointer;
 }
+
+.hoverForFullOpacity {
+  opacity: 0.5;
+  background-color: "yellow";
+}
+
+.hoverForFullOpacity:hover {
+  opacity: 1;
+  background-color: "pink";
+}
+
+.animateColorChange {
+  -webkit-transition: background-color 0.25s easeint;
+  -moz-transition: background-color 0.25s ease-in;
+  -o-transition: background-color 0.25s ease-in;
+
+  -webkit-transition: border-color 0.25s easeint;
+  -moz-transition: border-color 0.25s ease-in;
+  -o-transition: border-color 0.25s ease-in;
+
+  -webkit-transition: opacity 0.25s easeint;
+  -moz-transition: opacity 0.25s ease-in;
+  -o-transition: opacity 0.25s ease-in;
+  transition: border-color 0.25s ease-in,
+    background-color 0.25s ease-in opacity 1s ease-in;
+}

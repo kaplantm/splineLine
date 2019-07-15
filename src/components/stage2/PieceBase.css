@@ -2,23 +2,15 @@
   background: grey;
 } */
 
+.transparent {
+  opacity: 0.5;
+}
 .timeLineBlockText {
   width: 200px;
   color: white;
   font-size: 0.6em;
   text-align: left;
   padding: 0em 0.5em 0.5em 0.5em;
-}
-
-.animateColorChange {
-  -webkit-transition: background-color 0.25s easeint;
-  -moz-transition: background-color 0.25s ease-in;
-  -o-transition: background-color 0.25s ease-in;
-
-  -webkit-transition: border-color 0.5s easeint;
-  -moz-transition: border-color 0.25s ease-in;
-  -o-transition: border-color 0.25s ease-in;
-  transition: border-color 0.25s ease-in, background-color 0.25s ease-in;
 }
 
 .square-static {

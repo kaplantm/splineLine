@@ -17,17 +17,14 @@ function TimeLinePiece(props) {
     style = {},
     shape = shapeNames.SQUARE,
     textClassModifier,
-    baseHoverText = ""
+    // baseHoverText = "", //use for debugging (to display cellNums)
+    opacity = 1
   } = props;
-  console.log(props);
+
+  const baseHoverText = "";
   const [contentValue, setContent] = useState();
   const [modeValue, setMode] = useState(VIEW_MODE);
   const [labelValue, setLabel] = useState();
-  // const [contentValue, setContent] = useState(
-  //   "visited washington dc with hanna karas"
-  // );
-  // const [modeValue, setMode] = useState(VIEW_MODE);
-  // const [labelValue, setLabel] = useState("Summery 2015");
   const [hoverText, setHoverText] = useState(baseHoverText);
 
   const state = {
@@ -38,52 +35,55 @@ function TimeLinePiece(props) {
   };
 
   const onMouseUp = e => {
-    // console.log("onMouseUp", e.target);
-    // state.content.updater("cool new stuff");
     if (state.mode.value === EDIT_MODE) {
-      console.log("onMouseUp", "set view");
       state.mode.updater(VIEW_MODE);
     } else {
       state.mode.updater(EDIT_MODE);
-      console.log("onMouseUp", "set edit");
     }
   };
+
   const onMouseEnter = e => {
-    // console.log("onMouseEnter", e.target);
-    setHoverText("Edit");
+    state.hoverText.updater("Edit");
   };
 
   const onMouseOut = e => {
-    setHoverText(baseHoverText);
-    // console.log("onMouseOut", e.target);
+    state.hoverText.updater(baseHoverText);
+  };
+
+  const onClickOut = () => {
+    if (state.mode.value === EDIT_MODE) {
+      state.mode.updater(VIEW_MODE);
+    }
   };
 
   const handleChangeEvent = updater => e => {
-    // this.setState({ [input]: e.target.value });
-    // console.log("yo");
     updater(e.target.value);
   };
 
   const shouldDisplayTextContent =
     state.content.value || state.label.value || state.mode.value === EDIT_MODE;
-  // const textClasses = ` ${textClassModifier} ${
-  //   shouldDisplayTextContent ? "" : "hidden"
-  // }`;
 
-  console.log(shouldDisplayTextContent);
+  const color = `hsl(210, 100%, 56%, ${opacity})`;
+
   return (
     <div style={{ position: "relative" }}>
       <PieceBase
         shape={shape}
-        style={style}
+        style={{ ...style }}
         onMouseUp={onMouseUp}
+        color={color}
         // onMouseOver={onMouseOver}
-        onMouseEnter={onMouseEnter}
-        onMouseOut={onMouseOut}
         textClassModifier={textClassModifier}
         displayTextContent={shouldDisplayTextContent}
+        onClickOut={onClickOut}
+        onMouseOver={onMouseEnter}
+        onMouseOut={onMouseOut}
         innerTextContent={
-          state.mode.value === EDIT_MODE ? "Done" : state.hoverText.value
+          state.mode.value === EDIT_MODE ? (
+            <div className="hoverForFullOpacity animateColorChange">Done</div>
+          ) : (
+            <div className="transparent">{state.hoverText.value}</div>
+          )
         }
       >
         {state.mode.value !== EDIT_MODE && (
@@ -95,6 +95,7 @@ function TimeLinePiece(props) {
         {state.mode.value === EDIT_MODE && (
           <React.Fragment>
             <TextField
+              autoFocus={true}
               defaultValue={state.label.value}
               style={{ marginTop: "-.5em" }}
               placeholder="Enter Year or Label"

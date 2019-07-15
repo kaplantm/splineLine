@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Slider,
-  Typography,
-  TextField,
-  Button,
-  CssBaseline
-} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import shapeNames from "../../utils/shapeConstants";
 import PieceBase from "./PieceBase";
 

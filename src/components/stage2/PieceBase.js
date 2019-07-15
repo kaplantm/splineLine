@@ -1,38 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./PieceBase.css";
-import {
-  Slider,
-  Typography,
-  TextField,
-  Button,
-  CssBaseline
-} from "@material-ui/core";
 import shapeNames, { shapeClasses } from "../../utils/shapeConstants";
-import { flexbox } from "@material-ui/system";
 import ClickOutHandler from "react-onclickout";
-
-function getCurvedPiece({
-  shapeClassName,
-  combinedStyle,
-  onMouseOver,
-  onMouseUp,
-  id,
-  children
-}) {
-  return (
-    <div
-      className={`${shapeClassName} animateColorChange"`}
-      style={combinedStyle}
-      onMouseOver={onMouseOver}
-      onMouseUp={onMouseUp}
-      id={id}
-    >
-      <div className={`timeLineBlockText ${shapeClassName}-text`}>
-        {children}
-      </div>
-    </div>
-  );
-}
 
 function getColorStyle(color, shape) {
   return shape === shapeNames.SQUARE
@@ -52,14 +21,11 @@ function PieceBase(props) {
     children,
     textClassModifier = "",
     innerTextContent,
-    onMouseUpInner,
     onMouseOut,
     onMouseEnter,
     displayTextContent,
     onClickOut
   } = props;
-
-  let element, combinedStyle;
 
   const shapeClassName = isStaticPiece
     ? `${shapeClasses[shape]}-static`
@@ -70,7 +36,9 @@ function PieceBase(props) {
     : "";
   const innerTextLocationClass = `${shapeClassName}-inner-text${textClassModifier}`;
 
+  // Used to override css color (so we can have flat gradient across timeline)
   const colorStyle = color ? getColorStyle(color, shape) : {};
+
   return (
     <ClickOutHandler onClickOut={onClickOut}>
       <div className="pieceContainer">

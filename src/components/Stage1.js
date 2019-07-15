@@ -1,23 +1,8 @@
 import React, { useState } from "react";
 import logo from "../logo.svg";
 import "./Stage1.css";
-import {
-  Slider,
-  Typography,
-  TextField,
-  Button,
-  CssBaseline
-} from "@material-ui/core";
-import { ThemeProvider, useTheme } from "@material-ui/styles";
-import theme from "../theming/theme";
-
-import { css } from "@emotion/core";
-import { BeatLoader } from "react-spinners";
-
-const override = css`
-  display: block;
-  margin: 0.25em auto;
-`;
+import { Slider, Typography, Button } from "@material-ui/core";
+import Loader from "./stage1/Loader";
 
 function Stage1(props) {
   const { stage, lineCount, isLoading } = props;
@@ -35,15 +20,15 @@ function Stage1(props) {
   };
   return (
     <React.Fragment>
-      <Typography id="how-many-lines" gutterBottom>
+      <Typography id="how-many-lines" gutterBottom variant="h4" component="h2">
         How many lines?
       </Typography>
       <div
         style={{
           width: "60%",
           maxWidth: 500,
-          marginTop: "2em",
-          marginBottom: "2em"
+          marginTop: "4em",
+          marginBottom: "4em"
         }}
       >
         <Slider
@@ -64,20 +49,7 @@ function Stage1(props) {
       >
         Create Timeline
       </Button>
-      {isLoading.value && (
-        <div className="loader">
-          <Typography id="how-many-lines" gutterBottom>
-            Generating splines...
-          </Typography>
-          <BeatLoader
-            css={override}
-            sizeUnit={"px"}
-            size={15}
-            color={theme.palette.secondary.light}
-            loading={isLoading.value}
-          />
-        </div>
-      )}
+      <Loader text={"Generating Splines..."} loading={isLoading.value} />
     </React.Fragment>
   );
 }

@@ -1,69 +1,9 @@
 import React from "react";
 import TimelinePiece from "./TimelinePiece";
-import DataPiece from "./DataPiece";
-import shapeNames from "../../utils/shapeConstants";
 import { mapNumericValueToRange } from "../../utils/generalUtils";
+import LeftPiece from "./LeftPiece";
+import RightPiece from "./RightPiece";
 
-function getLeftPiece({ index, lineCount, opacity, cellNum }) {
-  const uncurved = <TimelinePiece opacity={opacity} baseHoverText={cellNum} />;
-
-  const upperCurve = (
-    <TimelinePiece
-      shape={shapeNames.CORNER_UPPER_LEFT}
-      opacity={opacity}
-      baseHoverText={cellNum}
-    />
-  );
-  const lowerCurve = (
-    <TimelinePiece
-      shape={shapeNames.CORNER_LOWER_LEFT}
-      opacity={opacity}
-      baseHoverText={cellNum}
-    />
-  );
-  if (index === 0) {
-    return uncurved;
-  }
-  if (index % 2) {
-    // if(index === lineCount -1)
-    return index === lineCount - 1 ? uncurved : upperCurve;
-  } else {
-    return lowerCurve;
-  }
-}
-
-function getRightPiece({ index, lineCount, opacity, cellNum }) {
-  const uncurvedTextBelow = (
-    <TimelinePiece
-      textClassModifier="-below"
-      opacity={opacity}
-      baseHoverText={cellNum}
-    />
-  );
-  const upperCurve = (
-    <TimelinePiece
-      shape={shapeNames.CORNER_UPPER_RIGHT}
-      opacity={opacity}
-      baseHoverText={cellNum}
-    />
-  );
-  const lowerCurve = (
-    <TimelinePiece
-      shape={shapeNames.CORNER_LOWER_RIGHT}
-      opacity={opacity}
-      baseHoverText={cellNum}
-    />
-  );
-
-  if (index === lineCount - 1) {
-    return lineCount % 2 ? uncurvedTextBelow : lowerCurve;
-  }
-  if (index % 2) {
-    return lowerCurve;
-  } else {
-    return upperCurve;
-  }
-}
 function TimeLine(props) {
   const { lineCount } = props;
   let lines = [];
@@ -84,10 +24,11 @@ function TimeLine(props) {
       console.log(cellNum, totalCells, opacity);
       let element = <TimelinePiece opacity={opacity} baseHoverText={cellNum} />;
 
+      const pieceProps = { index: i, lineCount, cellNum, opacity };
       if (j === 0) {
-        element = getLeftPiece({ index: i, lineCount, cellNum, opacity });
+        element = <LeftPiece {...pieceProps} />;
       } else if (j === 4) {
-        element = getRightPiece({ index: i, lineCount, cellNum, opacity });
+        element = <RightPiece {...pieceProps} />;
       }
       cells.push(
         <React.Fragment key={`TIMELINE_CELL_${i + j}`}>

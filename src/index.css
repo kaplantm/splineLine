@@ -30,14 +30,8 @@ code {
   cursor: pointer;
 }
 
-.hoverForFullOpacity {
-  opacity: 0.5;
-  background-color: "yellow";
-}
-
-.hoverForFullOpacity:hover {
-  opacity: 1;
-  background-color: "pink";
+.hidden {
+  visibility: hidden;
 }
 
 .animateColorChange {

@@ -1,20 +1,14 @@
 import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import {
-  Slider,
-  Typography,
-  TextField,
-  Button,
-  CssBaseline
-} from "@material-ui/core";
-import { ThemeProvider, useTheme } from "@material-ui/styles";
+import { CssBaseline } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/styles";
 import theme from "./theming/theme";
 import Stage1 from "./components/Stage1";
 import Stage2 from "./components/Stage2";
 
 function App() {
-  const [stage, setStage] = useState(2);
+  const [stage, setStage] = useState(1);
   const [lineCount, setLineCount] = useState(3);
   const [isLoading, setIsLoading] = useState(false);
 

@@ -2,25 +2,9 @@
   /* background-color: hsla(0, 100%, 50%, 0.15); */
   flex-direction: column;
   justify-content: flex-start;
-}
-.timeLineRight {
-  /* background-color: hsla(40, 100%, 50%, 0.15); */
-  width: 200px;
+  margin-top: 200px;
 }
 
-.timeLineLeft {
-  /* background-color: hsla(255, 100%, 50%, 0.15); */
-  width: 200px;
-}
-
-​ .timeLineLefte {
-  display: flex;
-  flex-wrap: nowrap;
-  background-color: cyan;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 150px;
-}
 .flex-container {
   justify-content: center;
   display: flex;

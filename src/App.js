@@ -10,20 +10,12 @@ import {
 } from "@material-ui/core";
 import { ThemeProvider, useTheme } from "@material-ui/styles";
 import theme from "./theming/theme";
-
-import { css } from "@emotion/core";
-import { BeatLoader } from "react-spinners";
 import Stage1 from "./components/Stage1";
 import Stage2 from "./components/Stage2";
 
-const override = css`
-  display: block;
-  margin: 0.25em auto;
-`;
-
 function App() {
-  const [stage, setStage] = useState(1);
-  const [lineCount, setLineCount] = useState(5);
+  const [stage, setStage] = useState(2);
+  const [lineCount, setLineCount] = useState(3);
   const [isLoading, setIsLoading] = useState(false);
 
   const state = {

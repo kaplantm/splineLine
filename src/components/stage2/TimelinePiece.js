@@ -13,8 +13,13 @@ const EDIT_MODE = "EDIT_MODE";
 const VIEW_MODE = "VIEW_MODE";
 
 function TimeLinePiece(props) {
-  const { style = {}, shape = shapeNames.SQUARE, textClassModifier } = props;
-
+  const {
+    style = {},
+    shape = shapeNames.SQUARE,
+    textClassModifier,
+    baseHoverText = ""
+  } = props;
+  console.log(props);
   const [contentValue, setContent] = useState();
   const [modeValue, setMode] = useState(VIEW_MODE);
   const [labelValue, setLabel] = useState();
@@ -23,7 +28,7 @@ function TimeLinePiece(props) {
   // );
   // const [modeValue, setMode] = useState(VIEW_MODE);
   // const [labelValue, setLabel] = useState("Summery 2015");
-  const [hoverText, setHoverText] = useState("");
+  const [hoverText, setHoverText] = useState(baseHoverText);
 
   const state = {
     content: { updater: setContent, value: contentValue },
@@ -49,7 +54,7 @@ function TimeLinePiece(props) {
   };
 
   const onMouseOut = e => {
-    setHoverText("");
+    setHoverText(baseHoverText);
     // console.log("onMouseOut", e.target);
   };
 

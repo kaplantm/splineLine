@@ -62,29 +62,30 @@ function PieceBase(props) {
   const innerTextLocationClass = `${shapeClassName}-inner-text${textClassModifier}`;
 
   return (
-    <div
-      className={`${shapeClassName} animateColorChange"`}
-      style={combinedStyle}
-      // onMouseOver={onMouseOver}
-      id={id}
-    >
-      {!isStaticPiece && (
-        <React.Fragment>
-          <div
-            className={`absolute-full ${innerTextLocationClass}`}
-            onMouseUp={onMouseUp}
-            onMouseOut={onMouseOut}
-            onMouseEnter={onMouseEnter}
-          >
-            {innerTextContent}
-          </div>
-          <div
-            className={`timeLineBlockText ${textLocationClass} ${textBorderClass}`}
-          >
-            {children}
-          </div>
-        </React.Fragment>
-      )}
+    <div className="pieceContainer" style={style}>
+      <div
+        className={`${shapeClassName} animateColorChange"`}
+        // onMouseOver={onMouseOver}
+        id={id}
+      >
+        {!isStaticPiece && (
+          <React.Fragment>
+            <div
+              className={`absolute-full ${innerTextLocationClass}`}
+              onMouseUp={onMouseUp}
+              onMouseOut={onMouseOut}
+              onMouseEnter={onMouseEnter}
+            >
+              {innerTextContent}
+            </div>
+            <div
+              className={`timeLineBlockText ${textLocationClass} ${textBorderClass}`}
+            >
+              {children}
+            </div>
+          </React.Fragment>
+        )}
+      </div>
     </div>
   );
 

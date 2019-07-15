@@ -40,6 +40,10 @@
   margin: 0;
 }
 
+.pieceContainer {
+  width: 200px;
+  height: 300px;
+}
 .square:hover {
   background-color: hsl(210, 100%, 66%);
 }
@@ -50,7 +54,9 @@
 
 .quarter-circle-lower-right {
   position: relative;
+  width: 200px;
   height: 200px;
+  margin-top: -100px;
   border-bottom: 100px;
   border-bottom-style: solid;
   border-bottom: 100px solid hsl(210, 100%, 56%);
@@ -61,8 +67,9 @@
 }
 .quarter-circle-lower-left {
   position: relative;
-  width: 100%;
+  width: 200px;
   height: 200px;
+  margin-top: -100px;
   border-bottom: 100px solid hsl(210, 100%, 56%);
   border-left: 100px solid hsl(210, 100%, 56%);
   border-radius: 0 2000px 0 0;
@@ -71,7 +78,7 @@
 }
 .quarter-circle-upper-right {
   position: relative;
-  width: 100%;
+  width: 200px;
   height: 200px;
   border-top: 100px solid hsl(210, 100%, 56%);
   border-right: 100px solid hsl(210, 100%, 56%);
@@ -81,7 +88,7 @@
 }
 .quarter-circle-upper-left {
   position: relative;
-  width: 100%;
+  width: 200px;
   height: 200px;
   border-top: 100px solid hsl(210, 100%, 56%);
   border-left: 100px solid hsl(210, 100%, 56%);

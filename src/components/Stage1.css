@@ -7,3 +7,55 @@
   justify-content: center;
   color: white;
 }
+
+.timelineOptionsContainer {
+  /* background-color: cornsilk; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.selectorSetContainer {
+  /* background-color: cornsilk; */
+  max-width: 40%;
+  text-align: left;
+  margin: 1em;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.selectorSetContainer .labelContainer {
+  /* background-color: cornsilk; */
+  /* align-self: flex-start;
+  justify-self: flex-start;
+  justi */
+}
+
+.selectorSetOptionsContainer {
+  /* background-color: oldlace; */
+  /* padding: 0.5em; */
+  margin: 0.25em 1em 1em 0em;
+  text-align: center;
+  display: flex;
+}
+
+.selectorSetOptionsContainer > div {
+  /* background-color: hsl(210, 100%, 56%); */
+  padding: 0.5em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 75px;
+  min-height: 75px;
+  border: 3px solid transparent;
+}
+
+.selectorSetOptionsContainer > div:hover {
+  border-bottom: 3px solid hsl(210, 100%, 100%, 0.8);
+}
+
+.selectorSetOptionsContainer > div.selectorSetOptionsActive {
+  border-color: white;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import TimelinePiece from "./TimelinePiece";
+import TimelinePiece, { EDIT_MODE, VIEW_MODE } from "./TimelinePiece";
 import { mapNumericValueToRange } from "../../utils/generalUtils";
 import LeftPiece from "./LeftPiece";
 import RightPiece from "./RightPiece";
@@ -21,12 +21,13 @@ function TimeLine(props) {
 
       let opacity = cellNum / totalCells;
       opacity = mapNumericValueToRange(opacity, 0, 1, 0.3, 1);
-      console.log(cellNum, totalCells, opacity);
+
       let element = <TimelinePiece opacity={opacity} baseHoverText={cellNum} />;
 
       const pieceProps = { index: i, lineCount, cellNum, opacity };
       if (j === 0) {
-        element = <LeftPiece {...pieceProps} />;
+        const defaultState = cellNum === 1 ? EDIT_MODE : VIEW_MODE;
+        element = <LeftPiece {...pieceProps} defaultState={defaultState} />;
       } else if (j === 4) {
         element = <RightPiece {...pieceProps} />;
       }

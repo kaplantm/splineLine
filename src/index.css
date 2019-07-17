@@ -46,6 +46,6 @@ code {
   -webkit-transition: opacity 0.25s easeint;
   -moz-transition: opacity 0.25s ease-in;
   -o-transition: opacity 0.25s ease-in;
-  transition: border-color 0.25s ease-in,
-    background-color 0.25s ease-in opacity 1s ease-in;
+  transition: border-color 0.15s ease-in, background-color 0.25s ease-in,
+    opacity 1s ease-in;
 }

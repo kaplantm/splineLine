@@ -7,3 +7,8 @@ export function mapNumericValueToRange(
 ) {
   return ((value - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
 }
+
+export function testForHSLAColorString(string) {
+  const regex = /hsla\((\d+),\s*([\d.]+)%,\s*([\d.]+)%,\s*(\d*(?:\.\d+)?)\)/;
+  return string.match(regex);
+}

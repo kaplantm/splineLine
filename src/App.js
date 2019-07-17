@@ -10,12 +10,14 @@ import Stage2 from "./components/Stage2";
 function App() {
   const [stage, setStage] = useState(1);
   const [lineCount, setLineCount] = useState(3);
+  const [lineColor, setlineColor] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   const state = {
     stage: { updater: setStage, value: stage },
     lineCount: { updater: setLineCount, value: lineCount },
-    isLoading: { updater: setIsLoading, value: isLoading }
+    isLoading: { updater: setIsLoading, value: isLoading },
+    lineColor: { updater: setlineColor, value: lineColor }
   };
 
   const headerLogoClass = `App-logo ${
@@ -31,8 +33,8 @@ function App() {
             <img src={logo} className={headerLogoClass} alt="logo" />
           </header>
           <div className="AppContent">
-            {stage === 1 && <Stage1 {...state} />}
-            {stage === 2 && <Stage2 {...state} />}
+            <Stage1 {...state} />
+            <Stage2 {...state} />
           </div>
         </div>
       </React.Fragment>

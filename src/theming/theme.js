@@ -3,7 +3,9 @@ import { blue, green } from "@material-ui/core/colors";
 import { whileStatement } from "@babel/types";
 
 const palette = {
-  primary: blue,
+  primary: {
+    main: blue[500]
+  },
   secondary: {
     main: "hsla(144, 37%, 50%, 1)"
   }
@@ -74,6 +76,11 @@ let theme = {
       rail: {
         height: 8,
         borderRadius: 4
+      }
+    },
+    MuiTypography: {
+      h5: {
+        color: "#92A6C4"
       }
     }
   }

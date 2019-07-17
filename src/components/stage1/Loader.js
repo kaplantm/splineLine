@@ -13,19 +13,22 @@ function Loader(props) {
   const { text = "", loading } = props;
   const hiddenClass = loading ? "" : "hidden";
 
-  return (
-    <div className={`loader ${hiddenClass}`}>
-      <Typography id="how-many-lines" gutterBottom>
-        {text}
-      </Typography>
-      <BeatLoader
-        css={override}
-        sizeUnit={"px"}
-        size={15}
-        color={theme.palette.secondary.light}
-      />
-    </div>
-  );
+  if (loading) {
+    return (
+      <div className={`loader ${hiddenClass}`}>
+        <Typography id="how-many-lines" gutterBottom>
+          {text}
+        </Typography>
+        <BeatLoader
+          css={override}
+          sizeUnit={"px"}
+          size={15}
+          color={theme.palette.secondary.light}
+        />
+      </div>
+    );
+  }
+  return null;
 }
 
 export default Loader;

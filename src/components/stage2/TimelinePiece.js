@@ -3,8 +3,8 @@ import { TextField } from "@material-ui/core";
 import shapeNames from "../../utils/shapeConstants";
 import PieceBase from "./PieceBase";
 
-const EDIT_MODE = "EDIT_MODE";
-const VIEW_MODE = "VIEW_MODE";
+export const EDIT_MODE = "EDIT_MODE";
+export const VIEW_MODE = "VIEW_MODE";
 
 function TimeLinePiece(props) {
   const {
@@ -12,12 +12,13 @@ function TimeLinePiece(props) {
     shape = shapeNames.SQUARE,
     textClassModifier,
     // baseHoverText = "", //use for debugging (to display cellNums)
-    opacity = 1
+    opacity = 1,
+    defaultState
   } = props;
 
   const baseHoverText = "";
   const [contentValue, setContent] = useState();
-  const [modeValue, setMode] = useState(VIEW_MODE);
+  const [modeValue, setMode] = useState(defaultState);
   const [labelValue, setLabel] = useState();
   const [hoverText, setHoverText] = useState(baseHoverText);
 

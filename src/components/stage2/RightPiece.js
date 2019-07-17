@@ -2,8 +2,8 @@ import React from "react";
 import TimelinePiece from "./TimelinePiece";
 import shapeNames from "../../utils/shapeConstants";
 
-function RightPiece({ index, lineCount, opacity, cellNum }) {
-  const pieceProps = { baseHoverText: cellNum, opacity };
+function RightPiece({ index, lineCount, opacity, cellNum, color }) {
+  const pieceProps = { baseHoverText: cellNum, opacity, color };
 
   const uncurvedTextBelow = (
     <TimelinePiece textClassModifier="-below" {...pieceProps} />

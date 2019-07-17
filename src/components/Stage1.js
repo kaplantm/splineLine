@@ -55,7 +55,7 @@ function Stage1(props) {
           options={[
             {
               label: "Red",
-              value: "red",
+              value: theme.palette.tertiary.main,
               style: {
                 backgroundColor: "coral",
                 ...sharedSelectStyle,
@@ -64,7 +64,7 @@ function Stage1(props) {
             },
             {
               label: "Blue",
-              value: "blue",
+              value: theme.palette.primary.main,
               style: {
                 backgroundColor: "dodgerblue",
                 ...sharedSelectStyle
@@ -72,7 +72,7 @@ function Stage1(props) {
             },
             {
               label: "Green",
-              value: "green",
+              value: theme.palette.secondary.main,
               style: {
                 backgroundColor: theme.palette.secondary.main,
                 ...sharedSelectStyle

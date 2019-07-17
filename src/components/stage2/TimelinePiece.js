@@ -13,6 +13,7 @@ function TimeLinePiece(props) {
     textClassModifier,
     // baseHoverText = "", //use for debugging (to display cellNums)
     opacity = 1,
+    color,
     defaultState
   } = props;
 
@@ -58,7 +59,7 @@ function TimeLinePiece(props) {
   const shouldDisplayTextContent =
     state.content.value || state.label.value || state.mode.value === EDIT_MODE;
 
-  const color = `hsl(210, 100%, 56%, ${opacity})`;
+  // const color = `hsl(210, 100%, 56%, ${opacity})`;
 
   return (
     <div style={{ position: "relative" }}>

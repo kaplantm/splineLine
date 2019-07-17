@@ -2,7 +2,8 @@ import React from "react";
 import { Typography } from "@material-ui/core";
 import {
   testForHSLAColorString,
-  mapNumericValueToRange
+  mapNumericValueToRange,
+  getColorCustomOpacityFromHSLA
 } from "../../utils/generalUtils";
 
 function SelectorSet(props) {
@@ -16,19 +17,6 @@ function SelectorSet(props) {
     color
   } = props;
 
-  function getColor(opacity = 0) {
-    const regexResult = testForHSLAColorString(color);
-
-    if (regexResult) {
-      const h = regexResult[1] || 0;
-      const s = regexResult[2] || 50;
-      const l = regexResult[3] || 50;
-      const a = mapNumericValueToRange(opacity, 0, 1, 0.2, 1);
-      return `hsla(${h}, ${s}%, ${l}%, ${a})`;
-    }
-    return "coral";
-  }
-
   const getOptionBoxes = () => {
     const { length } = options;
     return options.map((option, index) => {
@@ -37,7 +25,7 @@ function SelectorSet(props) {
       const { label, value, style = {} } = option;
 
       const backgroundColorStyle = color
-        ? { backgroundColor: getColor(opacity) }
+        ? { backgroundColor: getColorCustomOpacityFromHSLA(color, opacity) }
         : {};
       const defaultStyle = {
         ...backgroundColorStyle,

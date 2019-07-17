@@ -2,8 +2,15 @@ import React from "react";
 import TimelinePiece from "./TimelinePiece";
 import shapeNames from "../../utils/shapeConstants";
 
-function LeftPiece({ index, lineCount, opacity, cellNum, defaultState }) {
-  const pieceProps = { baseHoverText: cellNum, opacity, defaultState };
+function LeftPiece({
+  index,
+  lineCount,
+  opacity,
+  cellNum,
+  color,
+  defaultState
+}) {
+  const pieceProps = { baseHoverText: cellNum, opacity, defaultState, color };
 
   const uncurved = <TimelinePiece {...pieceProps} />;
   const upperCurve = (

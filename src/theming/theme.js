@@ -4,10 +4,13 @@ import { whileStatement } from "@babel/types";
 
 const palette = {
   primary: {
-    main: blue[500]
+    main: "hsla(210, 100%, 56%, 1)"
   },
   secondary: {
     main: "hsla(144, 37%, 50%, 1)"
+  },
+  tertiary: {
+    main: "hsla(16, 100%, 66%, 1)"
   }
 };
 let theme = {

@@ -10,7 +10,7 @@ import Stage2 from "./components/Stage2";
 function App() {
   const [stage, setStage] = useState(1);
   const [lineCount, setLineCount] = useState(3);
-  const [lineColor, setlineColor] = useState();
+  const [lineColor, setlineColor] = useState("hsla(210, 100%, 56%, 1)");
   const [isLoading, setIsLoading] = useState(false);
 
   const state = {

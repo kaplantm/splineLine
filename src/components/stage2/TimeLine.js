@@ -1,11 +1,15 @@
 import React from "react";
 import TimelinePiece, { EDIT_MODE, VIEW_MODE } from "./TimelinePiece";
-import { mapNumericValueToRange } from "../../utils/generalUtils";
+import {
+  mapNumericValueToRange,
+  getColorCustomOpacityFromHSLA
+} from "../../utils/generalUtils";
 import LeftPiece from "./LeftPiece";
 import RightPiece from "./RightPiece";
 
 function TimeLine(props) {
-  const { lineCount } = props;
+  const { lineCount, lineColor } = props;
+  console.log({ lineColor });
   let lines = [];
 
   const cellsPerLine = 5;
@@ -21,10 +25,16 @@ function TimeLine(props) {
 
       let opacity = cellNum / totalCells;
       opacity = mapNumericValueToRange(opacity, 0, 1, 0.3, 1);
+      const color = getColorCustomOpacityFromHSLA(lineColor, opacity);
+      let element = (
+        <TimelinePiece
+          color={color}
+          opacity={opacity}
+          baseHoverText={cellNum}
+        />
+      );
 
-      let element = <TimelinePiece opacity={opacity} baseHoverText={cellNum} />;
-
-      const pieceProps = { index: i, lineCount, cellNum, opacity };
+      const pieceProps = { index: i, lineCount, cellNum, opacity, color };
       if (j === 0) {
         const defaultState = cellNum === 1 ? EDIT_MODE : VIEW_MODE;
         element = <LeftPiece {...pieceProps} defaultState={defaultState} />;

@@ -30,6 +30,7 @@ function PieceBase(props) {
     isStaticPiece,
     onMouseUp,
     id,
+    innerTextBorderColor,
     children,
     textClassModifier = "",
     innerTextContent,
@@ -51,6 +52,9 @@ function PieceBase(props) {
 
   // Used to override css color (so we can have flat gradient across timeline)
   const fillStyle = color ? getFillStyle(color, image, shape) : {};
+  const borderColorStyle = innerTextBorderColor
+    ? { borderColor: innerTextBorderColor }
+    : {};
 
   return (
     <ClickOutHandler onClickOut={onClickOut}>
@@ -74,6 +78,7 @@ function PieceBase(props) {
               </div>
               <div
                 className={`timeLineBlockText ${textLocationClass} ${textBorderClass}`}
+                style={borderColorStyle}
               >
                 {children}
               </div>

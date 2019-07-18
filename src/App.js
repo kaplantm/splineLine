@@ -35,6 +35,7 @@ function App() {
           <div className="AppContent">
             <Stage1 {...state} />
             <Stage2 {...state} />
+            {state.lineCount.value > 2 && <Stage1 {...state} />}
           </div>
         </div>
       </React.Fragment>

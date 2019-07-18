@@ -9,7 +9,7 @@ import RightPiece from "./RightPiece";
 
 function TimeLine(props) {
   const { lineCount, lineColor } = props;
-  console.log({ lineColor });
+
   let lines = [];
 
   const cellsPerLine = 5;
@@ -31,10 +31,18 @@ function TimeLine(props) {
           color={color}
           opacity={opacity}
           baseHoverText={cellNum}
+          innerTextBorderColor={lineColor}
         />
       );
 
-      const pieceProps = { index: i, lineCount, cellNum, opacity, color };
+      const pieceProps = {
+        index: i,
+        lineCount,
+        cellNum,
+        opacity,
+        color,
+        innerTextBorderColor: lineColor
+      };
       if (j === 0) {
         const defaultState = cellNum === 1 ? EDIT_MODE : VIEW_MODE;
         element = <LeftPiece {...pieceProps} defaultState={defaultState} />;

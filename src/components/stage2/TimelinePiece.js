@@ -17,6 +17,7 @@ function TimeLinePiece(props) {
     textClassModifier,
     // baseHoverText = "", //use for debugging (to display cellNums)
     color,
+    innerTextBorderColor,
     defaultState = VIEW_MODE
   } = props;
 
@@ -32,14 +33,6 @@ function TimeLinePiece(props) {
       state.mode.updater(VIEW_MODE);
     } else {
       state.mode.updater(EDIT_MODE);
-    }
-  };
-
-  const onImageButtonPress = e => {
-    if (state.mode.value === IMAGE_MODE) {
-      state.mode.updater(EDIT_MODE);
-    } else {
-      state.mode.updater(IMAGE_MODE);
     }
   };
 
@@ -68,7 +61,7 @@ function TimeLinePiece(props) {
 
   const shouldDisplayTextContent =
     state.content.value || state.label.value || state.mode.value === EDIT_MODE;
-  console.log(state.image);
+
   return (
     <React.Fragment>
       {/* {state.mode.value === IMAGE_MODE && <FullScreenInput />} */}
@@ -77,6 +70,7 @@ function TimeLinePiece(props) {
           shape={shape}
           style={{ ...style }}
           color={color}
+          innerTextBorderColor={innerTextBorderColor}
           image={state.image.value}
           textClassModifier={textClassModifier}
           displayTextContent={shouldDisplayTextContent}

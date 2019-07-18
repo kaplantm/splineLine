@@ -37,19 +37,16 @@ let theme = {
         "& label.Mui-focused": {
           color: "green"
         },
-        "& .MuiInput-underline:after": {
-          borderBottomColor: "green"
-        },
         "& .MuiOutlinedInput-root": {
           "& fieldset": {
-            borderColor: palette.primary.A200
+            borderColor: "hsla(216, 10%, 67%, 1)"
           },
           "&:hover fieldset": {
-            borderColor: palette.primary.A200,
+            borderColor: "hsla(216, 10%, 67%, 1)",
             borderWidth: 2
           },
           "&.Mui-focused fieldset": {
-            borderColor: palette.primary[300]
+            borderColor: "hsla(216, 10%, 87%, 1)"
           }
         }
       }
@@ -88,7 +85,7 @@ let theme = {
     },
     MuiTypography: {
       h5: {
-        color: "#92A6C4"
+        color: "hsla(216, 30%, 67%, 1)"
       }
     }
   }

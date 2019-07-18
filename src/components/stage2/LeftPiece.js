@@ -8,9 +8,16 @@ function LeftPiece({
   opacity,
   cellNum,
   color,
-  defaultState
+  defaultState,
+  innerTextBorderColor
 }) {
-  const pieceProps = { baseHoverText: cellNum, opacity, defaultState, color };
+  const pieceProps = {
+    baseHoverText: cellNum,
+    opacity,
+    defaultState,
+    color,
+    innerTextBorderColor
+  };
 
   const uncurved = <TimelinePiece {...pieceProps} />;
   const upperCurve = (

@@ -3,12 +3,24 @@ import "./PieceBase.css";
 import shapeNames, { shapeClasses } from "../../utils/shapeConstants";
 import ClickOutHandler from "react-onclickout";
 
-function getColorStyle(color, shape) {
+function getFillStyle(color, image, shape) {
+  const backgroundImageStyle = image
+    ? {
+        backgroundImage: `url(${image})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center"
+      }
+    : {};
   return shape === shapeNames.SQUARE
-    ? { backgroundColor: color }
-    : { borderColor: color };
+    ? {
+        backgroundColor: color,
+        ...backgroundImageStyle
+      }
+    : {
+        borderColor: color
+      };
 }
-
 function PieceBase(props) {
   const {
     shape,
@@ -24,7 +36,8 @@ function PieceBase(props) {
     onMouseOut,
     onMouseEnter,
     displayTextContent,
-    onClickOut
+    onClickOut,
+    image
   } = props;
 
   const shapeClassName = isStaticPiece
@@ -37,13 +50,13 @@ function PieceBase(props) {
   const innerTextLocationClass = `${shapeClassName}-inner-text${textClassModifier}`;
 
   // Used to override css color (so we can have flat gradient across timeline)
-  const colorStyle = color ? getColorStyle(color, shape) : {};
+  const fillStyle = color ? getFillStyle(color, image, shape) : {};
 
   return (
     <ClickOutHandler onClickOut={onClickOut}>
       <div className="pieceContainer">
         <div
-          style={{ ...style, ...colorStyle }}
+          style={{ ...style, ...fillStyle }}
           className={`${shapeClassName} animateColorChange"`}
           // onMouseOver={onMouseOver}
           id={id}

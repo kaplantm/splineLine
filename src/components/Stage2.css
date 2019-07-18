@@ -5,6 +5,18 @@
   margin-top: 225px;
 }
 
+.fullScreenInput {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: navajowhite;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .flex-container {
   justify-content: center;
   display: flex;

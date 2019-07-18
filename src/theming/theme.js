@@ -16,6 +16,11 @@ const palette = {
 let theme = {
   palette,
   overrides: {
+    MuiIconButton: {
+      root: {
+        color: "white"
+      }
+    },
     MuiOutlinedInput: {
       root: {
         color: "white"

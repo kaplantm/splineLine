@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import { TextField } from "@material-ui/core";
+import { TextField, IconButton } from "@material-ui/core";
+import { Done, Image, Edit } from "@material-ui/icons/";
 import shapeNames from "../../utils/shapeConstants";
 import PieceBase from "./PieceBase";
+import PieceEditor from "./PieceEditor";
+import TimelinePieceButtons from "./TimelinePieceButtons";
 
 export const EDIT_MODE = "EDIT_MODE";
+export const IMAGE_MODE = "IMAGE_MODE";
 export const VIEW_MODE = "VIEW_MODE";
 
 function TimeLinePiece(props) {
@@ -12,25 +16,18 @@ function TimeLinePiece(props) {
     shape = shapeNames.SQUARE,
     textClassModifier,
     // baseHoverText = "", //use for debugging (to display cellNums)
-    opacity = 1,
     color,
-    defaultState
+    defaultState = VIEW_MODE
   } = props;
 
   const baseHoverText = "";
   const [contentValue, setContent] = useState();
   const [modeValue, setMode] = useState(defaultState);
+  const [imageValue, setImage] = useState();
   const [labelValue, setLabel] = useState();
   const [hoverText, setHoverText] = useState(baseHoverText);
 
-  const state = {
-    content: { updater: setContent, value: contentValue },
-    label: { updater: setLabel, value: labelValue },
-    mode: { updater: setMode, value: modeValue },
-    hoverText: { updater: setHoverText, value: hoverText }
-  };
-
-  const onMouseUp = e => {
+  const onSwitchMode = e => {
     if (state.mode.value === EDIT_MODE) {
       state.mode.updater(VIEW_MODE);
     } else {
@@ -38,18 +35,31 @@ function TimeLinePiece(props) {
     }
   };
 
-  const onMouseEnter = e => {
-    state.hoverText.updater("Edit");
-  };
-
-  const onMouseOut = e => {
-    state.hoverText.updater(baseHoverText);
-  };
-
-  const onClickOut = () => {
-    if (state.mode.value === EDIT_MODE) {
-      state.mode.updater(VIEW_MODE);
+  const onImageButtonPress = e => {
+    if (state.mode.value === IMAGE_MODE) {
+      state.mode.updater(EDIT_MODE);
+    } else {
+      state.mode.updater(IMAGE_MODE);
     }
+  };
+
+  const state = {
+    content: { updater: setContent, value: contentValue },
+    label: { updater: setLabel, value: labelValue },
+    mode: { updater: setMode, value: modeValue },
+    image: { updater: setImage, value: imageValue },
+    hoverText: {
+      updater: setHoverText,
+      value: hoverText || (
+        <IconButton onMouseUp={onSwitchMode}>
+          <Edit />
+        </IconButton>
+      )
+    }
+  };
+  const handleChange = (updater, value) => {
+    console.log("handleChange");
+    updater(value);
   };
 
   const handleChangeEvent = updater => e => {
@@ -58,67 +68,38 @@ function TimeLinePiece(props) {
 
   const shouldDisplayTextContent =
     state.content.value || state.label.value || state.mode.value === EDIT_MODE;
-
-  // const color = `hsl(210, 100%, 56%, ${opacity})`;
-
+  console.log(state.image);
   return (
-    <div style={{ position: "relative" }}>
-      <PieceBase
-        shape={shape}
-        style={{ ...style }}
-        onMouseUp={onMouseUp}
-        color={color}
-        // onMouseOver={onMouseOver}
-        textClassModifier={textClassModifier}
-        displayTextContent={shouldDisplayTextContent}
-        onClickOut={onClickOut}
-        onMouseOver={onMouseEnter}
-        onMouseOut={onMouseOut}
-        innerTextContent={
-          state.mode.value === EDIT_MODE ? (
-            <div className="hoverForFullOpacity animateColorChange">Done</div>
+    <React.Fragment>
+      {/* {state.mode.value === IMAGE_MODE && <FullScreenInput />} */}
+      <div style={{ position: "relative" }}>
+        <PieceBase
+          shape={shape}
+          style={{ ...style }}
+          color={color}
+          image={state.image.value}
+          textClassModifier={textClassModifier}
+          displayTextContent={shouldDisplayTextContent}
+          innerTextContent={
+            <TimelinePieceButtons
+              shape={shape}
+              mode={state.mode}
+              hoverText={state.hoverText}
+              handleChange={handleChange}
+            />
+          }
+        >
+          {state.mode.value === VIEW_MODE ? (
+            <React.Fragment>
+              <h3>{state.label.value}</h3>
+              {state.content.value}
+            </React.Fragment>
           ) : (
-            <div className="transparent">{state.hoverText.value}</div>
-          )
-        }
-      >
-        {state.mode.value !== EDIT_MODE && (
-          <React.Fragment>
-            <h3>{state.label.value}</h3>
-            {state.content.value}
-          </React.Fragment>
-        )}
-        {state.mode.value === EDIT_MODE && (
-          <React.Fragment>
-            <TextField
-              autoFocus={true}
-              defaultValue={state.label.value}
-              style={{ marginTop: "-.5em" }}
-              placeholder="Enter Year or Label"
-              id="outlined-multiline-static"
-              inputProps={{
-                maxLength: 20
-              }}
-              variant="outlined"
-              onChange={handleChangeEvent(state.label.updater)}
-            />
-            <TextField
-              defaultValue={state.content.value}
-              style={{ marginTop: ".5em", marginBottom: "-.5em" }}
-              placeholder="Enter Text"
-              id="outlined-multiline-static"
-              multiline
-              rows="4"
-              inputProps={{
-                maxLength: 70
-              }}
-              variant="outlined"
-              onChange={handleChangeEvent(state.content.updater)}
-            />
-          </React.Fragment>
-        )}
-      </PieceBase>
-    </div>
+            <PieceEditor {...state} handleChangeEvent={handleChangeEvent} />
+          )}
+        </PieceBase>
+      </div>
+    </React.Fragment>
   );
 }
 

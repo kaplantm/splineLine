@@ -20,8 +20,9 @@
   text-align: left;
   margin: 1em;
   flex-wrap: wrap;
+  flex-direction: column;
   display: flex;
-  align-items: center;
+  align-items: left;
   /* justify-content: center; */
 }
 

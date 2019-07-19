@@ -18,7 +18,12 @@ let theme = {
   overrides: {
     MuiIconButton: {
       root: {
-        color: "white"
+        color: "white",
+        backgroundColor: "hsla(220, 13%, 18%, .5);",
+        margin: ".25em",
+        "&:hover": {
+          backgroundColor: "hsla(220, 13%, 18%, .75);"
+        }
       }
     },
     MuiOutlinedInput: {

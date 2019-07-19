@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { TextField, IconButton } from "@material-ui/core";
-import { Done, Image, Edit } from "@material-ui/icons/";
 import shapeNames from "../../utils/shapeConstants";
 import PieceBase from "./PieceBase";
 import PieceEditor from "./PieceEditor";
@@ -18,16 +16,29 @@ function TimeLinePiece(props) {
     // baseHoverText = "", //use for debugging (to display cellNums)
     color,
     innerTextBorderColor,
+    appMode,
     defaultState = VIEW_MODE
   } = props;
 
   const baseHoverText = "";
-  const [contentValue, setContent] = useState();
   const [modeValue, setMode] = useState(defaultState);
+  const [contentValue, setContent] = useState();
   const [imageValue, setImage] = useState();
   const [labelValue, setLabel] = useState();
+
+  const [savedContentValue, setSavedContent] = useState();
+  const [savedImageValue, setSavedImage] = useState();
+  const [savedLabelValue, setSavedLabel] = useState();
   const [hoverText, setHoverText] = useState(baseHoverText);
 
+  function updateSavedValues() {
+    console.log(state);
+    state.savedLabel.updater(state.label.value);
+    state.savedContent.updater(state.content.value);
+    state.savedImage.updater(state.image.value);
+  }
+
+  //TODO: don't want both onSwitchModa and onModeChange
   const onSwitchMode = e => {
     if (state.mode.value === EDIT_MODE) {
       state.mode.updater(VIEW_MODE);
@@ -36,61 +47,69 @@ function TimeLinePiece(props) {
     }
   };
 
+  const onModeChange = newMode => {
+    updateSavedValues();
+    state.mode.updater(newMode);
+  };
+
   const state = {
+    mode: { updater: setMode, value: modeValue },
     content: { updater: setContent, value: contentValue },
     label: { updater: setLabel, value: labelValue },
-    mode: { updater: setMode, value: modeValue },
     image: { updater: setImage, value: imageValue },
+    savedContent: { updater: setSavedContent, value: savedContentValue },
+    savedLabel: { updater: setSavedLabel, value: savedLabelValue },
+    savedImage: { updater: setSavedImage, value: savedImageValue },
     hoverText: {
       updater: setHoverText,
-      value: hoverText || (
-        <IconButton onMouseUp={onSwitchMode}>
-          <Edit />
-        </IconButton>
-      )
+      value: hoverText
     }
   };
-  const handleChange = (updater, value) => {
-    console.log("handleChange");
-    updater(value);
-  };
+  console.log(appMode);
 
   const handleChangeEvent = updater => e => {
     updater(e.target.value);
   };
 
+  function getPieceChildContent() {
+    return state.mode.value === VIEW_MODE ? (
+      <React.Fragment>
+        <h3 style={{ wordBreak: "break-all" }}>{state.label.value}</h3>
+        <span style={{ wordBreak: "break-all" }}>{state.content.value}</span>
+      </React.Fragment>
+    ) : (
+      <PieceEditor {...state} handleChangeEvent={handleChangeEvent} />
+    );
+  }
+
   const shouldDisplayTextContent =
-    state.content.value || state.label.value || state.mode.value === EDIT_MODE;
+    state.content.value ||
+    state.label.value ||
+    (appMode === "edit" && state.mode.value === EDIT_MODE);
 
   return (
     <React.Fragment>
-      {/* {state.mode.value === IMAGE_MODE && <FullScreenInput />} */}
       <div style={{ position: "relative" }}>
         <PieceBase
           shape={shape}
           style={{ ...style }}
           color={color}
           innerTextBorderColor={innerTextBorderColor}
-          image={state.image.value}
+          image={state.savedImage.value}
           textClassModifier={textClassModifier}
           displayTextContent={shouldDisplayTextContent}
           innerTextContent={
-            <TimelinePieceButtons
-              shape={shape}
-              mode={state.mode}
-              hoverText={state.hoverText}
-              handleChange={handleChange}
-            />
+            appMode === "edit" && (
+              <TimelinePieceButtons
+                shape={shape}
+                mode={state.mode}
+                hoverText={state.hoverText}
+                onModeChange={onModeChange}
+              />
+            )
           }
         >
-          {state.mode.value === VIEW_MODE ? (
-            <React.Fragment>
-              <h3>{state.label.value}</h3>
-              {state.content.value}
-            </React.Fragment>
-          ) : (
-            <PieceEditor {...state} handleChangeEvent={handleChangeEvent} />
-          )}
+          {getPieceChildContent()}
         </PieceBase>
       </div>
     </React.Fragment>

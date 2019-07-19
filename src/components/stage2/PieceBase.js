@@ -37,7 +37,6 @@ function PieceBase(props) {
     onMouseOut,
     onMouseEnter,
     displayTextContent,
-    onClickOut,
     image
   } = props;
 
@@ -57,36 +56,33 @@ function PieceBase(props) {
     : {};
 
   return (
-    <ClickOutHandler onClickOut={onClickOut}>
-      <div className="pieceContainer">
-        <div
-          style={{ ...style, ...fillStyle }}
-          className={`${shapeClassName} animateColorChange"`}
-          // onMouseOver={onMouseOver}
-          id={id}
-        >
-          {!isStaticPiece && (
-            <React.Fragment>
-              <div
-                className={`absolute-full ${innerTextLocationClass}`}
-                onMouseUp={onMouseUp}
-                onMouseOut={onMouseOut}
-                onMouseEnter={onMouseEnter}
-                onMouseOver={onMouseOver}
-              >
-                {innerTextContent}
-              </div>
-              <div
-                className={`timeLineBlockText ${textLocationClass} ${textBorderClass}`}
-                style={borderColorStyle}
-              >
-                {children}
-              </div>
-            </React.Fragment>
-          )}
-        </div>
+    <div className="pieceContainer">
+      <div
+        style={{ ...style, ...fillStyle }}
+        className={`${shapeClassName} animateColorChange"`}
+        id={id}
+      >
+        {!isStaticPiece && (
+          <React.Fragment>
+            <div
+              className={`absolute-full ${innerTextLocationClass}`}
+              onMouseUp={onMouseUp}
+              onMouseOut={onMouseOut}
+              onMouseEnter={onMouseEnter}
+              onMouseOver={onMouseOver}
+            >
+              {innerTextContent}
+            </div>
+            <div
+              className={`timeLineBlockText ${textLocationClass} ${textBorderClass}`}
+              style={borderColorStyle}
+            >
+              {children}
+            </div>
+          </React.Fragment>
+        )}
       </div>
-    </ClickOutHandler>
+    </div>
   );
 }
 

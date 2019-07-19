@@ -9,12 +9,14 @@ function LeftPiece({
   cellNum,
   color,
   defaultState,
-  innerTextBorderColor
+  innerTextBorderColor,
+  appMode
 }) {
   const pieceProps = {
     baseHoverText: cellNum,
     opacity,
     defaultState,
+    appMode,
     color,
     innerTextBorderColor
   };

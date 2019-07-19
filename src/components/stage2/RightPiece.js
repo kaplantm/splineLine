@@ -8,12 +8,14 @@ function RightPiece({
   opacity,
   cellNum,
   color,
+  appMode,
   innerTextBorderColor
 }) {
   const pieceProps = {
     baseHoverText: cellNum,
     opacity,
     color,
+    appMode,
     innerTextBorderColor
   };
 

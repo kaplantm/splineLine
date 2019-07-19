@@ -6,7 +6,7 @@ import SelectorSet from "./stage1/SelectorSet";
 import theme from "../theming/theme";
 
 function Stage1(props) {
-  const { stage, lineCount, lineColor, isLoading } = props;
+  const { stage, lineCount, lineColor, isLoading, appMode } = props;
 
   const handleSliderChange = (e, value) => {
     lineCount.updater(value);
@@ -28,6 +28,10 @@ function Stage1(props) {
     console.log("onSelectedLineValueChange", value);
     lineColor.updater(value);
   };
+  const onSelectedAppModeChange = value => {
+    console.log("onSelectedAppModeChange", value);
+    appMode.updater(value);
+  };
   const sharedSelectStyle = {
     paddingLeft: "1em",
     paddingRight: "1em"
@@ -35,6 +39,17 @@ function Stage1(props) {
   return (
     <React.Fragment>
       <div className="timelineOptionsContainer">
+        <SelectorSet
+          gradient
+          label="MODE"
+          color="hsla(210, 20%, 56%, 1)"
+          options={[
+            { label: "View", value: "view" },
+            { label: "Edit", value: "edit" }
+          ]}
+          currentValue={appMode.value}
+          onValueChange={onSelectedAppModeChange}
+        />
         <SelectorSet
           label="LINES"
           gradient

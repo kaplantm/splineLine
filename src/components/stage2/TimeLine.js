@@ -8,7 +8,7 @@ import LeftPiece from "./LeftPiece";
 import RightPiece from "./RightPiece";
 
 function TimeLine(props) {
-  const { lineCount, lineColor } = props;
+  const { lineCount, lineColor, appMode } = props;
 
   let lines = [];
 
@@ -32,6 +32,7 @@ function TimeLine(props) {
           opacity={opacity}
           baseHoverText={cellNum}
           innerTextBorderColor={lineColor}
+          appMode={appMode}
         />
       );
 
@@ -41,11 +42,11 @@ function TimeLine(props) {
         cellNum,
         opacity,
         color,
+        appMode,
         innerTextBorderColor: lineColor
       };
       if (j === 0) {
-        const defaultState = cellNum === 1 ? EDIT_MODE : VIEW_MODE;
-        element = <LeftPiece {...pieceProps} defaultState={defaultState} />;
+        element = <LeftPiece {...pieceProps} />;
       } else if (j === 4) {
         element = <RightPiece {...pieceProps} />;
       }

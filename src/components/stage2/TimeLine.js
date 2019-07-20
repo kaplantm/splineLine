@@ -1,5 +1,5 @@
 import React from "react";
-import TimelinePiece, { EDIT_MODE, VIEW_MODE } from "./TimelinePiece";
+import TimelinePiece from "./TimelinePiece";
 import {
   mapNumericValueToRange,
   getColorCustomOpacityFromHSLA
@@ -30,7 +30,7 @@ function TimeLine(props) {
         <TimelinePiece
           color={color}
           opacity={opacity}
-          baseHoverText={cellNum}
+          cellId={cellNum}
           innerTextBorderColor={lineColor}
           appMode={appMode}
         />
@@ -39,7 +39,7 @@ function TimeLine(props) {
       const pieceProps = {
         index: i,
         lineCount,
-        cellNum,
+        cellId: cellNum,
         opacity,
         color,
         appMode,

@@ -13,42 +13,45 @@ function TimeLinePiece(props) {
     style = {},
     shape = shapeNames.SQUARE,
     textClassModifier,
-    // baseHoverText = "", //use for debugging (to display cellNums)
     color,
     innerTextBorderColor,
     appMode,
+    cellId,
     defaultState = VIEW_MODE
   } = props;
 
-  const baseHoverText = "";
   const [modeValue, setMode] = useState(defaultState);
-  const [contentValue, setContent] = useState();
-  const [imageValue, setImage] = useState();
-  const [labelValue, setLabel] = useState();
 
-  const [savedContentValue, setSavedContent] = useState();
-  const [savedImageValue, setSavedImage] = useState();
-  const [savedLabelValue, setSavedLabel] = useState();
-  const [hoverText, setHoverText] = useState(baseHoverText);
+  const [savedContentValue, setSavedContent] = useState(
+    window.localStorage.getItem(`savedContent${cellId}`)
+  );
+  const [savedImageValue, setSavedImage] = useState(
+    window.localStorage.getItem(`savedImage${cellId}`)
+  );
+  const [savedLabelValue, setSavedLabel] = useState(
+    window.localStorage.getItem(`savedLabel${cellId}`)
+  );
+
+  const [contentValue, setContent] = useState(savedContentValue);
+  const [imageValue, setImage] = useState(savedImageValue);
+  const [labelValue, setLabel] = useState(savedLabelValue);
+
+  const [hoverText, setHoverText] = useState(); //can set to cellId for testing
 
   function updateSavedValues() {
-    console.log(state);
     state.savedLabel.updater(state.label.value);
     state.savedContent.updater(state.content.value);
     state.savedImage.updater(state.image.value);
+
+    window.localStorage.setItem(`savedLabel${cellId}`, state.label.value);
+    window.localStorage.setItem(`savedContent${cellId}`, state.content.value);
+    window.localStorage.setItem(`savedImage${cellId}`, state.image.value);
   }
 
-  //TODO: don't want both onSwitchModa and onModeChange
-  const onSwitchMode = e => {
-    if (state.mode.value === EDIT_MODE) {
-      state.mode.updater(VIEW_MODE);
-    } else {
-      state.mode.updater(EDIT_MODE);
-    }
-  };
-
   const onModeChange = newMode => {
-    updateSavedValues();
+    if (state.mode.value !== VIEW_MODE) {
+      updateSavedValues();
+    }
     state.mode.updater(newMode);
   };
 
@@ -74,8 +77,10 @@ function TimeLinePiece(props) {
   function getPieceChildContent() {
     return state.mode.value === VIEW_MODE ? (
       <React.Fragment>
-        <h3 style={{ wordBreak: "break-all" }}>{state.label.value}</h3>
-        <span style={{ wordBreak: "break-all" }}>{state.content.value}</span>
+        <h3 style={{ wordBreak: "break-all" }}>{state.savedLabel.value}</h3>
+        <span style={{ wordBreak: "break-all" }}>
+          {state.savedContent.value}
+        </span>
       </React.Fragment>
     ) : (
       <PieceEditor {...state} handleChangeEvent={handleChangeEvent} />
@@ -87,6 +92,7 @@ function TimeLinePiece(props) {
     state.label.value ||
     (appMode === "edit" && state.mode.value === EDIT_MODE);
 
+  console.log("TLP", state.savedContent);
   return (
     <React.Fragment>
       <div style={{ position: "relative" }}>

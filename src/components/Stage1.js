@@ -1,41 +1,28 @@
 import React from "react";
 import "./Stage1.css";
-import { Slider, Typography, Button } from "@material-ui/core";
-import Loader from "./stage1/Loader";
 import SelectorSet from "./stage1/SelectorSet";
 import theme from "../theming/theme";
 
 function Stage1(props) {
-  const { stage, lineCount, lineColor, isLoading, appMode } = props;
-
-  const handleSliderChange = (e, value) => {
-    lineCount.updater(value);
-  };
-
-  const handleCreateTimelineButtonClick = () => {
-    isLoading.updater(true);
-    setTimeout(() => {
-      stage.updater(stage.value + 1);
-      isLoading.updater(false);
-    }, 1000);
-  };
+  const { lineCount, lineColor, appMode } = props;
 
   const onSelectedLineValueChange = value => {
-    console.log("onSelectedLineValueChange", value);
+    window.localStorage.setItem("lineCount", value);
     lineCount.updater(value);
   };
   const onSelectedLineColorValueChange = value => {
-    console.log("onSelectedLineValueChange", value);
+    window.localStorage.setItem("lineColor", value);
     lineColor.updater(value);
   };
   const onSelectedAppModeChange = value => {
-    console.log("onSelectedAppModeChange", value);
+    window.localStorage.setItem("appMode", value);
     appMode.updater(value);
   };
   const sharedSelectStyle = {
     paddingLeft: "1em",
     paddingRight: "1em"
   };
+
   return (
     <React.Fragment>
       <div className="timelineOptionsContainer">
@@ -98,7 +85,6 @@ function Stage1(props) {
           onValueChange={onSelectedLineColorValueChange}
         />
       </div>
-      <Loader text={"Generating Splines..."} loading={isLoading.value} />
     </React.Fragment>
   );
 }

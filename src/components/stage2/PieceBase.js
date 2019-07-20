@@ -1,7 +1,6 @@
 import React from "react";
 import "./PieceBase.css";
 import shapeNames, { shapeClasses } from "../../utils/shapeConstants";
-import ClickOutHandler from "react-onclickout";
 
 function getFillStyle(color, image, shape) {
   const backgroundImageStyle = image

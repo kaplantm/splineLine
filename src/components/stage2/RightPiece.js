@@ -9,10 +9,11 @@ function RightPiece({
   cellNum,
   color,
   appMode,
-  innerTextBorderColor
+  innerTextBorderColor,
+  cellId
 }) {
   const pieceProps = {
-    baseHoverText: cellNum,
+    cellId,
     opacity,
     color,
     appMode,

@@ -8,15 +8,19 @@ function PieceEditor({
   mode,
   label,
   content,
-  handleChangeEvent
+  handleChangeEvent,
+  savedContent,
+  savedLabel,
+  savedImage
 }) {
+  console.log({ savedContent });
   return (
     <React.Fragment>
       {mode.value === EDIT_MODE && (
         <React.Fragment>
           <TextField
             autoFocus={true}
-            defaultValue={label.value}
+            defaultValue={savedLabel.value}
             style={{ marginTop: "-.5em" }}
             placeholder="Enter Year or Label"
             id="label-entry"
@@ -27,7 +31,7 @@ function PieceEditor({
             onChange={handleChangeEvent(label.updater)}
           />
           <TextField
-            defaultValue={content.value}
+            defaultValue={savedContent.value}
             style={{ marginTop: ".5em", marginBottom: "-.5em" }}
             placeholder="Enter Text"
             id="content-entry"
@@ -44,7 +48,7 @@ function PieceEditor({
       {mode.value !== EDIT_MODE && (
         <TextField
           autoFocus={true}
-          defaultValue={image.value}
+          defaultValue={savedImage.value}
           style={{ marginTop: "-.5em" }}
           placeholder="Enter Image URL"
           id="image-url-entry"

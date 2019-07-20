@@ -1,10 +1,6 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
-import {
-  testForHSLAColorString,
-  mapNumericValueToRange,
-  getColorCustomOpacityFromHSLA
-} from "../../utils/generalUtils";
+import { getColorCustomOpacityFromHSLA } from "../../utils/generalUtils";
 
 function SelectorSet(props) {
   const {

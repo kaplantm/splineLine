@@ -1,6 +1,5 @@
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
-import { blue, green } from "@material-ui/core/colors";
-import { whileStatement } from "@babel/types";
+// import { blue, green } from "@material-ui/core/colors";
 
 const palette = {
   primary: {

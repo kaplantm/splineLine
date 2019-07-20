@@ -3,23 +3,25 @@ import logo from "./logo.svg";
 import "./App.css";
 import { CssBaseline } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
-import { IconButton } from "@material-ui/core";
-import { RemoveRedEye } from "@material-ui/icons/";
 import theme from "./theming/theme";
 import Stage1 from "./components/Stage1";
 import Stage2 from "./components/Stage2";
 
 function App() {
   const [stage, setStage] = useState(1);
-  const [lineCount, setLineCount] = useState(3);
-  const [lineColor, setlineColor] = useState("hsla(210, 100%, 56%, 1)");
-  const [isLoading, setIsLoading] = useState(false);
-  const [appMode, setAppMode] = useState("edit");
+  const [lineCount, setLineCount] = useState(
+    parseInt(window.localStorage.getItem("lineCount") || 3)
+  );
+  const [lineColor, setlineColor] = useState(
+    window.localStorage.getItem("lineColor") || "hsla(210, 100%, 56%, 1)"
+  );
+  const [appMode, setAppMode] = useState(
+    window.localStorage.getItem("appMode") || "edit"
+  );
 
   const state = {
     stage: { updater: setStage, value: stage },
     lineCount: { updater: setLineCount, value: lineCount },
-    isLoading: { updater: setIsLoading, value: isLoading },
     lineColor: { updater: setlineColor, value: lineColor },
     appMode: { updater: setAppMode, value: appMode }
   };

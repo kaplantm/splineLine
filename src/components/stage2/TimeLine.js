@@ -26,15 +26,6 @@ function TimeLine(props) {
       let opacity = cellNum / totalCells;
       opacity = mapNumericValueToRange(opacity, 0, 1, 0.3, 1);
       const color = getColorCustomOpacityFromHSLA(lineColor, opacity);
-      let element = (
-        <TimelinePiece
-          color={color}
-          opacity={opacity}
-          cellId={cellNum}
-          innerTextBorderColor={lineColor}
-          appMode={appMode}
-        />
-      );
 
       const pieceProps = {
         index: i,
@@ -45,6 +36,9 @@ function TimeLine(props) {
         appMode,
         innerTextBorderColor: lineColor
       };
+
+      let element = <TimelinePiece {...pieceProps} />;
+
       if (j === 0) {
         element = <LeftPiece {...pieceProps} />;
       } else if (j === 4) {

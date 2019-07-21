@@ -14,4 +14,10 @@ export const shapeClasses = {
   CORNER_LOWER_LEFT: "quarter-circle-lower-left"
 };
 
+export const Modes = {
+  EDIT_MODE: "EDIT_MODE",
+  IMAGE_MODE: "IMAGE_MODE",
+  VIEW_MODE: "VIEW_MODE"
+};
+
 export default shapeNames;

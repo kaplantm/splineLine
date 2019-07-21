@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import shapeNames from "../../utils/shapeConstants";
+import shapeNames, { Modes } from "../../utils/sharedConstants";
 import PieceBase from "./PieceBase";
 import PieceEditor from "./PieceEditor";
 import TimelinePieceButtons from "./TimelinePieceButtons";
-
-export const EDIT_MODE = "EDIT_MODE";
-export const IMAGE_MODE = "IMAGE_MODE";
-export const VIEW_MODE = "VIEW_MODE";
 
 function TimeLinePiece(props) {
   const {
@@ -17,11 +13,10 @@ function TimeLinePiece(props) {
     innerTextBorderColor,
     appMode,
     cellId,
-    defaultState = VIEW_MODE
+    defaultState = Modes.VIEW_MODE
   } = props;
 
   const [modeValue, setMode] = useState(defaultState);
-
   const [savedContentValue, setSavedContent] = useState(
     window.localStorage.getItem(`savedContent${cellId}`)
   );
@@ -31,11 +26,9 @@ function TimeLinePiece(props) {
   const [savedLabelValue, setSavedLabel] = useState(
     window.localStorage.getItem(`savedLabel${cellId}`)
   );
-
   const [contentValue, setContent] = useState(savedContentValue);
   const [imageValue, setImage] = useState(savedImageValue);
   const [labelValue, setLabel] = useState(savedLabelValue);
-
   const [hoverText, setHoverText] = useState(); //can set to cellId for testing
 
   function updateSavedValues() {
@@ -49,7 +42,7 @@ function TimeLinePiece(props) {
   }
 
   const onModeChange = newMode => {
-    if (state.mode.value !== VIEW_MODE) {
+    if (state.mode.value !== Modes.VIEW_MODE) {
       updateSavedValues();
     }
     state.mode.updater(newMode);
@@ -68,14 +61,13 @@ function TimeLinePiece(props) {
       value: hoverText
     }
   };
-  console.log(appMode);
 
   const handleChangeEvent = updater => e => {
     updater(e.target.value);
   };
 
   function getPieceChildContent() {
-    return state.mode.value === VIEW_MODE ? (
+    return state.mode.value === Modes.VIEW_MODE ? (
       <React.Fragment>
         <h3 style={{ wordBreak: "break-all" }}>{state.savedLabel.value}</h3>
         <span style={{ wordBreak: "break-all" }}>
@@ -90,9 +82,8 @@ function TimeLinePiece(props) {
   const shouldDisplayTextContent =
     state.content.value ||
     state.label.value ||
-    (appMode === "edit" && state.mode.value === EDIT_MODE);
+    (appMode === "edit" && state.mode.value === Modes.EDIT_MODE);
 
-  console.log("TLP", state.savedContent);
   return (
     <React.Fragment>
       <div style={{ position: "relative" }}>

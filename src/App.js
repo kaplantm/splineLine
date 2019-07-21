@@ -13,7 +13,7 @@ function App() {
     parseInt(window.localStorage.getItem("lineCount") || 3)
   );
   const [lineColor, setlineColor] = useState(
-    window.localStorage.getItem("lineColor") || "hsla(210, 100%, 56%, 1)"
+    window.localStorage.getItem("lineColor") || theme.palette.primary.main
   );
   const [appMode, setAppMode] = useState(
     window.localStorage.getItem("appMode") || "edit"
@@ -26,7 +26,7 @@ function App() {
     appMode: { updater: setAppMode, value: appMode }
   };
 
-  const headerLogoClass = `App-logo ${
+  const headerLogoClass = `App-main-logo ${
     state.stage.value !== 1 ? "pointer" : ""
   }`;
 
@@ -35,7 +35,7 @@ function App() {
       <React.Fragment>
         <CssBaseline />
         <div className="App">
-          <header className="App-header" onMouseUp={() => setStage(1)}>
+          <header className="App-main-header" onMouseUp={() => setStage(1)}>
             <img src={logo} className={headerLogoClass} alt="logo" />
           </header>
           <div className="AppContent">

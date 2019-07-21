@@ -1,33 +1,18 @@
 import React from "react";
 import TimelinePiece from "./TimelinePiece";
-import shapeNames from "../../utils/shapeConstants";
+import shapeNames from "../../utils/sharedConstants";
 
-function RightPiece({
-  index,
-  lineCount,
-  opacity,
-  cellNum,
-  color,
-  appMode,
-  innerTextBorderColor,
-  cellId
-}) {
-  const pieceProps = {
-    cellId,
-    opacity,
-    color,
-    appMode,
-    innerTextBorderColor
-  };
+function RightPiece(props) {
+  const { index, lineCount } = props;
 
   const uncurvedTextBelow = (
-    <TimelinePiece textClassModifier="-below" {...pieceProps} />
+    <TimelinePiece textClassModifier="-below" {...props} />
   );
   const upperCurve = (
-    <TimelinePiece shape={shapeNames.CORNER_UPPER_RIGHT} {...pieceProps} />
+    <TimelinePiece shape={shapeNames.CORNER_UPPER_RIGHT} {...props} />
   );
   const lowerCurve = (
-    <TimelinePiece shape={shapeNames.CORNER_LOWER_RIGHT} {...pieceProps} />
+    <TimelinePiece shape={shapeNames.CORNER_LOWER_RIGHT} {...props} />
   );
 
   if (index === lineCount - 1) {

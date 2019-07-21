@@ -1,40 +1,22 @@
 import React from "react";
 import TimelinePiece from "./TimelinePiece";
-import shapeNames from "../../utils/shapeConstants";
+import shapeNames from "../../utils/sharedConstants";
 
-function LeftPiece({
-  index,
-  lineCount,
-  opacity,
-  cellNum,
-  color,
-  cellId,
-  defaultState,
-  innerTextBorderColor,
-  appMode
-}) {
-  const pieceProps = {
-    cellId,
-    opacity,
-    defaultState,
-    appMode,
-    color,
-    innerTextBorderColor
-  };
+function LeftPiece(props) {
+  const { index, lineCount } = props;
 
-  const uncurved = <TimelinePiece {...pieceProps} />;
+  const uncurved = <TimelinePiece {...props} />;
   const upperCurve = (
-    <TimelinePiece shape={shapeNames.CORNER_UPPER_LEFT} {...pieceProps} />
+    <TimelinePiece shape={shapeNames.CORNER_UPPER_LEFT} {...props} />
   );
   const lowerCurve = (
-    <TimelinePiece shape={shapeNames.CORNER_LOWER_LEFT} {...pieceProps} />
+    <TimelinePiece shape={shapeNames.CORNER_LOWER_LEFT} {...props} />
   );
 
   if (index === 0) {
     return uncurved;
   }
   if (index % 2) {
-    // if(index === lineCount -1)
     return index === lineCount - 1 ? uncurved : upperCurve;
   } else {
     return lowerCurve;

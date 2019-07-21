@@ -1,6 +1,6 @@
 import React from "react";
 import { TextField } from "@material-ui/core";
-import { EDIT_MODE } from "./TimelinePiece";
+import { Modes } from "../../utils/sharedConstants";
 
 function PieceEditor({
   shape,
@@ -16,7 +16,7 @@ function PieceEditor({
   console.log({ savedContent });
   return (
     <React.Fragment>
-      {mode.value === EDIT_MODE && (
+      {mode.value === Modes.EDIT_MODE && (
         <React.Fragment>
           <TextField
             autoFocus={true}
@@ -45,7 +45,7 @@ function PieceEditor({
           />
         </React.Fragment>
       )}
-      {mode.value !== EDIT_MODE && (
+      {mode.value !== Modes.EDIT_MODE && (
         <TextField
           autoFocus={true}
           defaultValue={savedImage.value}

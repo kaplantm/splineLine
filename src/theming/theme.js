@@ -9,7 +9,10 @@ const palette = {
     main: "hsla(144, 37%, 50%, 1)"
   },
   tertiary: {
-    main: "hsla(16, 100%, 66%, 1)"
+    main: "hsla(8, 100%, 66%, 1)"
+  },
+  neutral: {
+    main: "hsla(210, 20%, 56%, 1)"
   }
 };
 let theme = {

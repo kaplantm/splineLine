@@ -1,6 +1,6 @@
 /* Reference: https://stackoverflow.com/questions/40769551/how-to-use-google-fonts-in-react-js#47733243 */
-@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
-/* https://fonts.googleapis.com/css?family=Josefin+Sans */
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,500,700&display=swap");
+
 body {
   background-color: hsl(220, 13%, 18%);
   margin: 0;

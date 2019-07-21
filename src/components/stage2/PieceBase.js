@@ -1,6 +1,6 @@
 import React from "react";
 import "./PieceBase.css";
-import shapeNames, { shapeClasses } from "../../utils/shapeConstants";
+import shapeNames, { shapeClasses } from "../../utils/sharedConstants";
 
 function getFillStyle(color, image, shape) {
   const backgroundImageStyle = image

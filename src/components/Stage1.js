@@ -29,7 +29,7 @@ function Stage1(props) {
         <SelectorSet
           gradient
           label="MODE"
-          color="hsla(210, 20%, 56%, 1)"
+          color={theme.palette.neutral.main}
           options={[
             { label: "View", value: "view" },
             { label: "Edit", value: "edit" }
@@ -40,7 +40,7 @@ function Stage1(props) {
         <SelectorSet
           label="LINES"
           gradient
-          color="hsla(210, 100%, 56%, 1)"
+          color={theme.palette.primary.main}
           options={[
             { label: 1, value: 1 },
             { label: 2, value: 2 },
@@ -59,7 +59,7 @@ function Stage1(props) {
               label: "Red",
               value: theme.palette.tertiary.main,
               style: {
-                backgroundColor: "coral",
+                backgroundColor: theme.palette.tertiary.main,
                 ...sharedSelectStyle,
                 marginLeft: 0
               }
@@ -68,7 +68,7 @@ function Stage1(props) {
               label: "Blue",
               value: theme.palette.primary.main,
               style: {
-                backgroundColor: "dodgerblue",
+                backgroundColor: theme.palette.primary.main,
                 ...sharedSelectStyle
               }
             },

@@ -28,9 +28,9 @@ function TimeLinePiece(props) {
         state.savedContent.updater(state.content.value);
         state.savedImage.updater(state.image.value);
 
-        window.localStorage.setItem(`savedLabel${cellId}`, state.label.value);
-        window.localStorage.setItem(`savedContent${cellId}`, state.content.value);
-        window.localStorage.setItem(`savedImage${cellId}`, state.image.value);
+        state.label.value && window.localStorage.setItem(`savedLabel${cellId}`, state.label.value);
+        state.content.value && window.localStorage.setItem(`savedContent${cellId}`, state.content.value);
+        state.image.value && window.localStorage.setItem(`savedImage${cellId}`, state.image.value);
     }
 
     const onModeChange = newMode => {
@@ -51,9 +51,7 @@ function TimeLinePiece(props) {
             value: hoverText}};
 
     const handleChangeEvent = updater => e => {
-        if (e.target.value) {
-            updater(e.target.value);
-        }
+        updater(e.target.value);
     };
 
     function getPieceChildContent() {

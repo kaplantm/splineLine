@@ -34,7 +34,7 @@ function PieceEditor({ shape,
                         id="content-entry"
                         multiline
                         rows="4"
-                        inputProps={{ maxLength: 70 }}
+                        inputProps={{ maxLength: 200 }}
                         variant="outlined"
                         onChange={handleChangeEvent(content.updater)}
                     />

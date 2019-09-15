@@ -3,226 +3,261 @@
 } */
 
 .transparent {
-  opacity: 0.5;
+    opacity: 0.5;
 }
+
 .timeLineBlockText {
-  width: 200px;
-  color: white;
-  font-size: 0.6em;
-  text-align: left;
-  padding: 0em 0.5em 0.5em 0.5em;
+    width: 200px;
+    color: white;
+    font-size: 0.6em;
+    text-align: left;
+    padding: 0 0.5em 0.5em;
 }
 
 .square-static {
-  background-color: transparent;
-  border: 0;
-  width: 200px;
-  height: 200px;
-  padding: 0;
-  margin: 0;
+    background-color: transparent;
+    border: 0;
+    width: 200px;
+    height: 200px;
+    padding: 0;
+    margin: 0;
 }
 
 .square {
-  position: relative;
-  background-color: hsl(210, 100%, 56%);
-  border: 0;
-  width: 200px;
-  height: 100px;
-  padding: 0;
-  margin: 0;
+    position: relative;
+    background-color: hsl(210, 100%, 56%);
+    border: 0;
+    width: 200px;
+    height: 100px;
+    padding: 0;
+    margin: 0;
 }
 
 .pieceContainer {
-  width: 200px;
-  height: 300px;
+    width: 200px;
+    height: 300px;
 }
+
 .square:hover {
-  background-color: hsl(210, 100%, 66%);
+    background-color: hsl(210, 100%, 66%);
 }
 
 .blue {
-  background-color: hsl(210, 100%, 56%);
+    background-color: hsl(210, 100%, 56%);
 }
 
 .quarter-circle-lower-right {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  margin-top: -100px;
-  border-bottom: 100px;
-  border-bottom-style: solid;
-  border-bottom: 100px solid hsl(210, 100%, 56%);
-  border-right: 100px solid hsl(210, 100%, 56%);
-  border-radius: 0 0 200px 0;
-  -moz-border-radius: 0 0 200px 0;
-  -webkit-border-radius: 0 0 200px 0;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+    border-bottom: 100px;
+    border-bottom-style: solid;
+    border-bottom: 100px solid hsl(210, 100%, 56%);
+    border-right: 100px solid hsl(210, 100%, 56%);
+    border-radius: 0 0 200px;
+    -moz-border-radius: 0 0 200px;
+    -webkit-border-radius: 0 0 200px;
 }
+
 .quarter-circle-lower-left {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  margin-top: -100px;
-  border-bottom: 100px solid hsl(210, 100%, 56%);
-  border-left: 100px solid hsl(210, 100%, 56%);
-  border-radius: 0 2000px 0 0;
-  -moz-border-radius: 0 0 0 200px;
-  -webkit-border-radius: 0 0 0 2000px;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+    border-bottom: 100px solid hsl(210, 100%, 56%);
+    border-left: 100px solid hsl(210, 100%, 56%);
+    border-radius: 0 2000px 0 0;
+    -moz-border-radius: 0 0 0 200px;
+    -webkit-border-radius: 0 0 0 2000px;
 }
+
 .quarter-circle-upper-right {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  border-top: 100px solid hsl(210, 100%, 56%);
-  border-right: 100px solid hsl(210, 100%, 56%);
-  border-radius: 0px 0px 200px 1px;
-  -moz-border-radius: 200px 0 0;
-  -webkit-border-radius: 0 200px 0 0;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-top: 100px solid hsl(210, 100%, 56%);
+    border-right: 100px solid hsl(210, 100%, 56%);
+    border-radius: 0 0 200px 1px;
+    -moz-border-radius: 200px 0 0;
+    -webkit-border-radius: 0 200px 0 0;
 }
+
 .quarter-circle-upper-left {
-  position: relative;
-  width: 200px;
-  height: 200px;
-  border-top: 100px solid hsl(210, 100%, 56%);
-  border-left: 100px solid hsl(210, 100%, 56%);
-  border-radius: 0 200px 0 0;
-  -moz-border-radius: 200px 0 0 0;
-  -webkit-border-radius: 200px 0 0 0;
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-top: 100px solid hsl(210, 100%, 56%);
+    border-left: 100px solid hsl(210, 100%, 56%);
+    border-radius: 0 200px 0 0;
+    -moz-border-radius: 200px 0 0;
+    -webkit-border-radius: 200px 0 0;
 }
 
 .quarter-circle-lower-right:hover {
-  border-bottom: 100px solid hsl(210, 100%, 66%);
-  border-right: 100px solid hsl(210, 100%, 66%);
+    border-bottom: 100px solid hsl(210, 100%, 66%);
+    border-right: 100px solid hsl(210, 100%, 66%);
 }
+
 .quarter-circle-lower-left:hover {
-  border-bottom: 100px solid hsl(210, 100%, 66%);
-  border-left: 100px solid hsl(210, 100%, 66%);
+    border-bottom: 100px solid hsl(210, 100%, 66%);
+    border-left: 100px solid hsl(210, 100%, 66%);
 }
+
 .quarter-circle-upper-right:hover {
-  border-top: 100px solid hsl(210, 100%, 66%);
-  border-right: 100px solid hsl(210, 100%, 66%);
+    border-top: 100px solid hsl(210, 100%, 66%);
+    border-right: 100px solid hsl(210, 100%, 66%);
 }
+
 .quarter-circle-upper-left:hover {
-  border-top: 100px solid hsl(210, 100%, 66%);
-  border-left: 100px solid hsl(210, 100%, 66%);
+    border-top: 100px solid hsl(210, 100%, 66%);
+    border-left: 100px solid hsl(210, 100%, 66%);
 }
 
 /* TIMELINE TEXT */
 .square-text {
-  /* background-color: orange; */
-  /* border-left: 2px dashed dodgerblue; */
-  display: flex;
-  /* justify-content: flex-start; */
 
-  /* justify-content: center; */
-  justify-content: flex-end;
-  flex-direction: column;
-  position: absolute;
-  top: -105px;
-  left: 0;
-  height: 100px;
-  padding: 0em 0.5em 1em 1em;
+    /* background-color: orange; */
+
+    /* border-left: 2px dashed dodgerblue; */
+    display: flex;
+
+    /* justify-content: flex-start; */
+
+    /* justify-content: center; */
+    justify-content: flex-end;
+    flex-direction: column;
+    position: absolute;
+    top: -155px;
+    left: 0;
+    height: 150px;
+    padding: 0 0.5em 1em 1em;
 }
+
 .square-text-below {
-  /* background-color: pink; */
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  position: absolute;
-  bottom: -115px;
-  height: 100px;
-  left: 0;
-  padding: 1em 0.5em 0em 1m;
+
+    /* background-color: pink; */
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: absolute;
+    bottom: -165px;
+    height: 150px;
+    left: 0;
+    padding: 1em 0.5em 0 1m;
 }
 
 .square-text-border {
-  border-left: 2px dashed dodgerblue;
+    border-left: 2px dashed dodgerblue;
 }
+
 .quarter-circle-lower-right-text-border {
-  border-left: 2px dashed dodgerblue;
+    border-left: 2px dashed dodgerblue;
 }
+
 .quarter-circle-lower-left-text-border {
-  border-right: 2px dashed dodgerblue;
+    border-right: 2px dashed dodgerblue;
 }
+
 .quarter-circle-upper-right-text-border {
-  border-left: 2px dashed dodgerblue;
+    border-left: 2px dashed dodgerblue;
 }
+
 .quarter-circle-upper-left-text-border {
-  border-right: 2px dashed dodgerblue;
+    border-right: 2px dashed dodgerblue;
 }
 
 .quarter-circle-lower-right-text {
-  /* border-left: 2px dashed dodgerblue; */
-  /* background-color: olive; */
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  position: absolute;
-  bottom: -160px;
-  height: 120px;
-  padding: 1em 1em 0em 1em;
-  left: 150px;
+
+    /* border-left: 2px dashed dodgerblue; */
+
+    /* background-color: olive; */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    bottom: -210px;
+    height: 170px;
+    padding: 1em 1em 0;
+    left: 150px;
 }
+
 .quarter-circle-lower-left-text {
-  /* background-color: blue; */
-  text-align: right;
-  /* border-right: 2px dashed dodgerblue; */
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  bottom: -160px;
-  height: 120px;
-  right: 150px;
-  padding: 1em 1em 0em 1em;
+
+    /* background-color: blue; */
+    text-align: right;
+
+    /* border-right: 2px dashed dodgerblue; */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    bottom: -210px;
+    height: 170px;
+    right: 150px;
+    padding: 1em 1em 0;
 }
+
 .quarter-circle-upper-right-text {
-  /* background-color: red; */
-  /* border-left: 2px dashed dodgerblue; */
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  top: -160px;
-  height: 120px;
-  padding: 0em 1em 1em 1em;
-  left: 150px;
+
+    /* background-color: red; */
+
+    /* border-left: 2px dashed dodgerblue; */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    top: -210px;
+    height: 170px;
+    padding: 0 1em 1em;
+    left: 150px;
 }
+
 .quarter-circle-upper-left-text {
-  /* background-color: red; */
-  text-align: right;
-  /* border-right: 2px dashed dodgerblue; */
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  top: -160px;
-  height: 120px;
-  padding: 0em 1em 1em 1em;
-  right: 150px;
+
+    /* background-color: red; */
+    text-align: right;
+
+    /* border-right: 2px dashed dodgerblue; */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    top: -210px;
+    height: 170px;
+    padding: 0 1em 1em;
+    right: 150px;
 }
 
 .quarter-circle-lower-right-inner-text {
-  /* background-color: green; */
-  right: -100%;
-  bottom: -100%;
+
+    /* background-color: green; */
+    right: -100%;
+    bottom: -100%;
 }
+
 .quarter-circle-lower-left-inner-text {
-  /* background-color: yellow; */
-  left: -100%;
-  bottom: -100%;
+
+    /* background-color: yellow; */
+    left: -100%;
+    bottom: -100%;
 }
+
 .quarter-circle-upper-right-inner-text {
-  /* background-color: blue; */
-  right: -100%;
-  top: -100%;
+
+    /* background-color: blue; */
+    right: -100%;
+    top: -100%;
 }
+
 .quarter-circle-upper-left-inner-text {
-  /* background-color: red; */
-  left: -100%;
-  top: -100%;
+
+    /* background-color: red; */
+    left: -100%;
+    top: -100%;
 }
 
 .spacer {
-  width: 200px;
-  height: 200px;
+    width: 200px;
+    height: 200px;
 }

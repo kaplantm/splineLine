@@ -1,8 +1,9 @@
-import React from 'react';
-import { TextField } from '@material-ui/core';
-import { Modes } from '../../utils/sharedConstants';
+import React from 'react'
+import { TextField } from '@material-ui/core'
+import { Modes } from '../../utils/sharedConstants'
 
-function PieceEditor({ shape,
+function PieceEditor({
+    shape,
     image,
     mode,
     label,
@@ -10,8 +11,8 @@ function PieceEditor({ shape,
     handleChangeEvent,
     savedContent,
     savedLabel,
-    savedImage }) {
-    console.log({ savedContent });
+    savedImage,
+}) {
     return (
         <React.Fragment>
             {mode.value === Modes.EDIT_MODE && (
@@ -28,8 +29,7 @@ function PieceEditor({ shape,
                     />
                     <TextField
                         defaultValue={savedContent.value}
-                        style={{marginTop: '0.5em',
-                                marginBottom: '-0.5em'}}
+                        style={{ marginTop: '0.5em', marginBottom: '-0.5em' }}
                         placeholder="Enter Text"
                         id="content-entry"
                         multiline
@@ -53,7 +53,7 @@ function PieceEditor({ shape,
                 />
             )}
         </React.Fragment>
-    );
+    )
 }
 
-export default PieceEditor;
+export default PieceEditor

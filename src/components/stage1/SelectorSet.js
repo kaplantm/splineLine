@@ -1,29 +1,43 @@
-import React from 'react';
-import { Typography } from '@material-ui/core';
-import { getColorCustomOpacityFromHSLA } from '../../utils/generalUtils';
+import React from 'react'
+import { Typography } from '@material-ui/core'
+import { getColorCustomOpacityFromHSLA } from '../../utils/generalUtils'
 
 function SelectorSet(props) {
-    const { options, gradient, currentValue, onValueChange,
-        spacing, label, color } = props;
+    const {
+        options,
+        gradient,
+        currentValue,
+        onValueChange,
+        spacing,
+        label,
+        color,
+    } = props
 
     const getOptionBoxes = () => {
-        const { length } = options;
+        const { length } = options
         return options.map((option, index) => {
-            const opacity = gradient ? index / length : 1;
+            const opacity = gradient ? index / length : 1
 
-            const { label, value, style = {} } = option;
+            const { label, value, style = {} } = option
 
             const backgroundColorStyle = color
-                ? { backgroundColor: getColorCustomOpacityFromHSLA(color, opacity) }
-                : {};
-            const defaultStyle = {...backgroundColorStyle,
-                    marginLeft: spacing,
-                    marginRight: spacing};
+                ? {
+                      backgroundColor: getColorCustomOpacityFromHSLA(
+                          color,
+                          opacity
+                      ),
+                  }
+                : {}
+            const defaultStyle = {
+                ...backgroundColorStyle,
+                marginLeft: spacing,
+                marginRight: spacing,
+            }
 
             const selectedClass =
                 currentValue === value || (!currentValue && !index)
                     ? 'selectorSetOptionsActive'
-                    : '';
+                    : ''
             return (
                 <div
                     className={` ${selectedClass} animateColorChange`}
@@ -33,9 +47,9 @@ function SelectorSet(props) {
                 >
                     {label}
                 </div>
-            );
-        });
-    };
+            )
+        })
+    }
 
     return (
         <div className="selectorSetContainer">
@@ -53,7 +67,7 @@ function SelectorSet(props) {
                 {getOptionBoxes()}
             </div>
         </div>
-    );
+    )
 }
 
-export default SelectorSet;
+export default SelectorSet

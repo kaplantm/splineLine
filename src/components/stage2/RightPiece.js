@@ -1,28 +1,28 @@
-import React from 'react';
-import TimelinePiece from './TimelinePiece';
-import shapeNames from '../../utils/sharedConstants';
+import React from 'react'
+import TimelinePiece from './TimelinePiece'
+import shapeNames from '../../utils/sharedConstants'
 
 function RightPiece(props) {
-    const { index, lineCount } = props;
+    const { index, lineCount } = props
 
     const uncurvedTextBelow = (
         <TimelinePiece textClassModifier="-below" {...props} />
-    );
+    )
     const upperCurve = (
         <TimelinePiece shape={shapeNames.CORNER_UPPER_RIGHT} {...props} />
-    );
+    )
     const lowerCurve = (
         <TimelinePiece shape={shapeNames.CORNER_LOWER_RIGHT} {...props} />
-    );
+    )
 
     if (index === lineCount - 1) {
-        return lineCount % 2 ? uncurvedTextBelow : lowerCurve;
+        return lineCount % 2 ? uncurvedTextBelow : lowerCurve
     }
     if (index % 2) {
-        return lowerCurve;
+        return lowerCurve
     } else {
-        return upperCurve;
+        return upperCurve
     }
 }
 
-export default RightPiece;
+export default RightPiece

@@ -1,9 +1,9 @@
-import React from 'react';
-import './Stage2.css';
-import TimeLine from './stage2/TimeLine';
+import React from 'react'
+import './Stage2.css'
+import TimeLine from './stage2/TimeLine'
 
 function Stage2(props) {
-    const { lineCount = {}, lineColor = {}, appMode = {} } = props;
+    const { lineCount = {}, lineColor = {}, appMode = {} } = props
 
     return (
         <React.Fragment>
@@ -15,7 +15,7 @@ function Stage2(props) {
                 />
             </div>
         </React.Fragment>
-    );
+    )
 }
 
-export default Stage2;
+export default Stage2

@@ -1,8 +1,6 @@
 module.exports = {
     extends: ['react-app', 'eslint:recommended'],
     rules: {
-        indent: ['error', 4],
-        'array-element-newline': ['error', 'never'],
         quotes: ['error', 'single'],
         'jsx-quotes': ['error', 'prefer-single'],
         'max-len': ['error', 120],
@@ -18,11 +16,9 @@ module.exports = {
         ],
         'no-console': 'warn',
         'padded-blocks': ['error', 'never'],
-        'multiline-comment-style': ['error', 'starred-block'],
         'max-lines': ['warn', { max: 500, skipBlankLines: true }],
         'jsx-quotes': ['error', 'prefer-double'],
         'array-bracket-spacing': ['error', 'never'],
-        'capitalized-comments': ['error', 'always'],
         'no-useless-concat': 'error',
         'block-scoped-var': 'error',
         'no-var': 'error',
@@ -40,8 +36,6 @@ module.exports = {
         'brace-style': ['error', '1tbs', { allowSingleLine: false }],
         'eol-last': ['error', 'always'],
         'func-call-spacing': ['error', 'never'],
-        'function-paren-newline': ['error', 'never'],
-        'object-curly-newline': ['error', 'never'],
         'lines-between-class-members': ['error', 'always'],
         'no-lonely-if': 'error',
         'spaced-comment': [
@@ -60,4 +54,4 @@ module.exports = {
             },
         ],
     },
-};
+}

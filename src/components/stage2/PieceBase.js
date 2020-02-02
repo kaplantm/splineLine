@@ -1,21 +1,23 @@
-import React from 'react';
-import './PieceBase.css';
-import shapeNames, { shapeClasses } from '../../utils/sharedConstants';
+import React from 'react'
+import './PieceBase.css'
+import shapeNames, { shapeClasses } from '../../utils/sharedConstants'
 
 function getFillStyle(color, image, shape) {
     const backgroundImageStyle = image
-        ? {backgroundImage: `url(${image})`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center'}
-        : {};
+        ? {
+              backgroundImage: `url(${image})`,
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+          }
+        : {}
     return shape === shapeNames.SQUARE
-        ? {backgroundColor: color,
-            ...backgroundImageStyle}
-        : {borderColor: color};
+        ? { backgroundColor: color, ...backgroundImageStyle }
+        : { borderColor: color }
 }
 function PieceBase(props) {
-    const {shape,
+    const {
+        shape,
         style,
         color,
         onMouseOver,
@@ -29,22 +31,23 @@ function PieceBase(props) {
         onMouseOut,
         onMouseEnter,
         displayTextContent,
-        image} = props;
+        image,
+    } = props
 
     const shapeClassName = isStaticPiece
         ? `${shapeClasses[shape]}-static`
-        : shapeClasses[shape];
-    const textLocationClass = `${shapeClassName}-text${textClassModifier}`;
+        : shapeClasses[shape]
+    const textLocationClass = `${shapeClassName}-text${textClassModifier}`
     const textBorderClass = displayTextContent
         ? `${shapeClassName}-text-border`
-        : '';
-    const innerTextLocationClass = `${shapeClassName}-inner-text${textClassModifier}`;
+        : ''
+    const innerTextLocationClass = `${shapeClassName}-inner-text${textClassModifier}`
 
     // Used to override css color (so we can have flat gradient across timeline)
-    const fillStyle = color ? getFillStyle(color, image, shape) : {};
+    const fillStyle = color ? getFillStyle(color, image, shape) : {}
     const borderColorStyle = innerTextBorderColor
         ? { borderColor: innerTextBorderColor }
-        : {};
+        : {}
 
     return (
         <div className="pieceContainer">
@@ -74,7 +77,7 @@ function PieceBase(props) {
                 )}
             </div>
         </div>
-    );
+    )
 }
 
-export default PieceBase;
+export default PieceBase

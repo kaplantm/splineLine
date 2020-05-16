@@ -12,6 +12,10 @@
     color: white;
 }
 
+.App.print {
+    background-color: rgb(40, 44, 52);
+}
+
 .AppContent {
     min-height: 500px;
     width: 100%;
@@ -22,7 +26,6 @@
     font-size: calc(10px + 2vmin);
     justify-content: center;
     color: white;
-    /* margin: 2em auto; */
 }
 
 .App-main-logo {
@@ -40,7 +43,6 @@
 
 .stageContainer {
     background-color: rgb(97, 218, 251);
-    /* margin-top: 3em; */
     height: 70vh;
     min-height: 500px;
     width: 100%;

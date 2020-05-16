@@ -30,6 +30,7 @@ function Stage1(props) {
                     options={[
                         { label: 'View', value: 'view' },
                         { label: 'Edit', value: 'edit' },
+                        { label: 'Print', value: 'print' },
                     ]}
                     currentValue={appMode.value}
                     onValueChange={onSelectedAppModeChange}

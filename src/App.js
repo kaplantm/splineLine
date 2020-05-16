@@ -8,7 +8,6 @@ import Stage1 from './components/Stage1'
 import Stage2 from './components/Stage2'
 
 function App() {
-    const [stage, setStage] = useState(1)
     const [lineCount, setLineCount] = useState(
         parseInt(window.localStorage.getItem('lineCount') || 3)
     )
@@ -20,28 +19,20 @@ function App() {
     )
 
     const state = {
-        stage: { updater: setStage, value: stage },
         lineCount: { updater: setLineCount, value: lineCount },
         lineColor: { updater: setlineColor, value: lineColor },
         appMode: { updater: setAppMode, value: appMode },
     }
-
-    const headerLogoClass = `App-main-logo ${
-        state.stage.value !== 1 ? 'pointer' : ''
-    }`
 
     return (
         <ThemeProvider theme={theme}>
             <React.Fragment>
                 <CssBaseline />
                 <div className="App">
-                    <header
-                        className="App-main-header"
-                        onMouseUp={() => setStage(1)}
-                    >
+                    <header className="App-main-header">
                         <img
                             src={logo}
-                            className={headerLogoClass}
+                            className="App-main-logo pointer"
                             alt="logo"
                         />
                     </header>
